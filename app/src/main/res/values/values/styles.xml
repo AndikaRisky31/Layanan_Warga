@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="h1Text">
+        <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:textColor">@color/secondary_color</item>
+    </style>
+    <style name="CustomButtonStyle">
+        <item name="android:background">@drawable/button_preset</item> <!-- Menggunakan sumber daya drawable dengan teks -->
+        <item name="android:textSize">20sp</item> <!-- Ukuran teks 16sp -->
+        <item name="android:textColor">@color/primary_color</item> <!-- Warna teks hitam -->
+        <item name="android:fontFamily">@font/poppins_semibold</item> <!-- Jenis font Poppins -->
+    </style>
+</resources>
