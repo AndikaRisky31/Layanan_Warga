@@ -13,6 +13,27 @@
         android:theme="@style/Theme.LayananWarga"
         tools:targetApi="31">
         <activity
+            android:name=".home.MenuActivity"
+            android:exported="false"
+            android:label="@string/title_activity_menu"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".preLogin.SentForgotPasswordActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".preLogin.ForgotPasswordActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".preLogin.LoginActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".preLogin.RegisterActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
             android:name=".preLogin.LandingScreenActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.NoActionBar">

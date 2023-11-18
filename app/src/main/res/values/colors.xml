@@ -4,4 +4,5 @@
     <color name="secondary_color">#27005D</color>
     <color name="background_color">#FFFFFF</color>
     <color name="warning_color">#C10C0C</color>
+    <color name="black">#000000</color>
 </resources>
