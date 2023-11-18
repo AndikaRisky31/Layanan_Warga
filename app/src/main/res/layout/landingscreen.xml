@@ -55,15 +55,12 @@
 
     <TextView
         android:id="@+id/centeredText2"
+        style="@style/text"
         android:layout_width="328dp"
         android:layout_height="86dp"
-        android:fontFamily="@font/poppins_regular"
-        android:gravity="center"
         android:text="@string/textWelcome"
-        android:textColor="@color/secondary_color"
-        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/centeredText3" />
 

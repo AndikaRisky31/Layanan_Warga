@@ -1,0 +1,21 @@
+<!-- Misalnya, ic_my_svg.xml -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="27dp"
+    android:height="22dp"
+    android:viewportWidth="27"
+    android:viewportHeight="22">
+
+    <path
+        android:pathData="M23.4286 2H3.78571C2.79949 2 2 2.7995 2 3.78571V18.9643C2 19.9505 2.79949 20.75 3.78571 20.75H23.4286C24.4148 20.75 25.2143 19.9505 25.2143 18.9643V3.78571C25.2143 2.7995 24.4148 2 23.4286 2Z"
+        android:strokeColor="#27005D"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"/>
+
+    <path
+        android:pathData="M2 4.23218L12.4643 10.5255C12.7852 10.7138 13.1896 10.817 13.6071 10.817C14.0247 10.817 14.4291 10.7138 14.75 10.5255L25.2143 4.23218"
+        android:strokeColor="#27005D"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"/>
+</vector>

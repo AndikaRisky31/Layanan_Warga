@@ -1,0 +1,24 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_Beranda"
+        android:icon="@drawable/ic_beranda"
+        android:title="Beranda" />
+
+    <item
+        android:id="@+id/navigation_Layanan"
+        android:icon="@drawable/ic_layanan"
+        android:title="Layanan" />
+
+    <item
+        android:id="@+id/navigation_Lapor"
+        android:icon="@drawable/ic_camera"
+        android:title="lapor" />
+    <item
+        android:id="@+id/navigation_Notifikasi"
+        android:icon="@drawable/ic_notifikasi"
+        android:title="Notifikasi" />
+    <item
+        android:id="@+id/navigation_Profile"
+        android:icon="@drawable/ic_profile"
+        android:title="profile" />
+</menu>

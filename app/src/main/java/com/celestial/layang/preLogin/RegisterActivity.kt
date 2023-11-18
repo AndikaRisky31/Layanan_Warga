@@ -4,19 +4,20 @@ package com.celestial.layang.preLogin
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.celestial.layang.databinding.LandingscreenBinding
+import com.celestial.layang.databinding.ActivityRegisterBinding
 
-class LandingScreenActivity : AppCompatActivity() {
 
-    private lateinit var binding: LandingscreenBinding
+class RegisterActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityRegisterBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = LandingscreenBinding.inflate(layoutInflater)
+        binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.buttonGetStarted.setOnClickListener{
-            intent = Intent(this,RegisterActivity::class.java)
+        binding.linklogin.setOnClickListener{
+            intent = Intent(this,LoginActivity::class.java)
             startActivity(intent)
         }
     }
