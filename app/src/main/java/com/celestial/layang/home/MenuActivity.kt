@@ -6,7 +6,7 @@ import androidx.databinding.DataBindingUtil
 import com.celestial.layang.R
 import com.celestial.layang.databinding.ActivityMenuBinding
 import com.celestial.layang.notifikasi.NotifikasiFragment
-import com.celestial.layang.pengajuan.PengajuanFragment
+import com.celestial.layang.layanan.pengajuan.PengajuanFragment
 import com.celestial.layang.profile.ProfileFragment
 
 class MenuActivity : AppCompatActivity() {

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pengajuan_judul">
+        <item>Pembuatan Surat Pengantar</item>
+        <item>Surat Keterangan Tidak Mampu</item>
+        <item>Surat Pembuatan Kartu Keluarga</item>
+    </string-array>
+</resources>

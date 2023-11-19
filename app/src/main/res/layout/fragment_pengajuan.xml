@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary_color"
+    tools:context=".layanan.pengajuan.PengajuanFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_layanan"
+        android:layout_width="match_parent"
+        android:layout_height="632dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_back"
+        tools:layout_editor_absoluteX="0dp"
+        tools:listitem="@layout/pengajuan_item" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="94dp"
+        tools:layout_editor_absoluteX="3dp"
+        android:background="@color/secondary_color"/>
+
+    <TextView
+        android:id="@+id/textView3"
+        style="@style/H1Text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:text="Jenis Surat"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        style="@style/subheadText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pilih jenis surat yang akan anda ajukan"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+    <ImageButton
+        android:id="@+id/button_back"
+        style="@style/CustomButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/baseline_arrow_back_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
