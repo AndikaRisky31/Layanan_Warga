@@ -35,5 +35,15 @@
         <item name="android:textSize">14sp</item>
         <item name="android:gravity">center</item>
     </style>
+    <!-- res/values/styles.xml -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- ... other style attributes ... -->
+        <item name="colorPrimary">@color/primary_color</item>
+        <item name="colorPrimaryDark">@color/secondary_color</item>
+        <item name="colorAccent">@color/Accent</item>
+        <!-- ... other style attributes ... -->
+    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
 
 </resources>
