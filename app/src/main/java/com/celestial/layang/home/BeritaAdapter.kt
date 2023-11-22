@@ -3,6 +3,7 @@ package com.celestial.layang.home
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.celestial.layang.databinding.ItemBeritaBinding
 
 class BeritaAdapter(private val beritaList: List<BeritaModel>) :
@@ -28,6 +29,10 @@ class BeritaAdapter(private val beritaList: List<BeritaModel>) :
 
         fun bind(berita: BeritaModel) {
             binding.berita = berita
+            Glide.with(itemView)
+                .load(berita.imageUrl)
+                .centerCrop()
+                .into(binding.imageberita)
             binding.executePendingBindings()
         }
     }

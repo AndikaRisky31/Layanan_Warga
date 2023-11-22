@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.celestial.layang.databinding.FragmentBerandaBinding
 import com.celestial.layang.fasilitas.FasilitasActivity
+import com.celestial.layang.janjiTemu.JanjiTemuActivity
 
 class BerandaFragment : Fragment() {
 
@@ -43,6 +44,10 @@ class BerandaFragment : Fragment() {
         // Intent untuk memulai FasilitasActivity
         binding.icFasilitas.setOnClickListener {
             val intent = Intent(requireContext(), FasilitasActivity::class.java)
+            startActivity(intent)
+        }
+        binding.icJanjiTemu.setOnClickListener{
+            val intent = Intent(requireContext(),JanjiTemuActivity::class.java)
             startActivity(intent)
         }
     }
