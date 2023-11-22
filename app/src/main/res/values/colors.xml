@@ -5,4 +5,5 @@
     <color name="background_color">#FFFFFF</color>
     <color name="warning_color">#C10C0C</color>
     <color name="black">#000000</color>
+    <color name="stroke_color">#A9A9A9</color>
 </resources>

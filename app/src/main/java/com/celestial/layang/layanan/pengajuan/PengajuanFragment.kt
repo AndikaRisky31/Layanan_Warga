@@ -6,11 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.celestial.layang.R
 import com.celestial.layang.databinding.FragmentPengajuanBinding
-import com.celestial.layang.layanan.pengajuan.ModelDanAdapter.PengajuanAdapter
-import com.celestial.layang.layanan.pengajuan.ModelDanAdapter.PengajuanModel
+import com.celestial.layang.layanan.LayananFragment
+import com.celestial.layang.layanan.ModelDanAdapter.PengajuanAdapter
+import com.celestial.layang.layanan.ModelDanAdapter.PengajuanModel
 
 
 class PengajuanFragment : Fragment() {
@@ -35,6 +38,14 @@ class PengajuanFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHomeAdapter()
+        val fab = view.findViewById<ImageButton>(R.id.button_back)
+        fab.setOnClickListener {
+            val fragmentManager = requireActivity().supportFragmentManager
+            val layananFragment = LayananFragment() // Ganti dengan kelas fragment "Layanan" yang sesuai
+            fragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, layananFragment)
+                .commit()
+        }
     }
 
 
@@ -46,15 +57,15 @@ class PengajuanFragment : Fragment() {
         }
         Log.d("ISI DATANYA ", dataList.toString())
         adapter = PengajuanAdapter(dataList, this@PengajuanFragment)
-        binding.rvLayanan.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvLayanan.adapter = adapter
+        binding.rvPengajuan.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvPengajuan.adapter = adapter
     }
 
     private fun judul(): Array<String> = resources.getStringArray(R.array.pengajuan_judul)
 
     private fun image(): List<Int> = listOf(
         R.drawable.layanan2,
-        R.drawable.layanan1,
+        R.drawable.layanan4,
         R.drawable.layanan3
     )
 

@@ -5,4 +5,15 @@
         <item>Surat Keterangan Tidak Mampu</item>
         <item>Surat Pembuatan Kartu Keluarga</item>
     </string-array>
+    <string-array name="layanan_judul">
+        <item>Pembuatan Surat Pengantar</item>
+        <item>Persyaratan Surat Pengantar</item>
+        <item>Riwayat Pembuatan Surat Pengantar</item>
+    </string-array>
+    <string-array name="persyaratan_judul">
+        <item>Surat Keterangan Nikah</item>
+        <item>Surat Pengantar Pembuatan KTP</item>
+        <item>Surat Pengantar Pembuatan KK</item>
+        <item>Surat Keterangan Tidak Mampu</item>
+    </string-array>
 </resources>

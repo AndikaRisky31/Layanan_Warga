@@ -1,4 +1,4 @@
-package com.celestial.layang.layanan.pengajuan.ModelDanAdapter
+package com.celestial.layang.layanan.ModelDanAdapter
 
 data class PengajuanModel(
     val judul: String,

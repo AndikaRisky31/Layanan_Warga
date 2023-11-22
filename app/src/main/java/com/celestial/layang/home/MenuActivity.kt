@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.celestial.layang.R
 import com.celestial.layang.databinding.ActivityMenuBinding
+import com.celestial.layang.layanan.LayananFragment
 import com.celestial.layang.notifikasi.NotifikasiFragment
-import com.celestial.layang.layanan.pengajuan.PengajuanFragment
 import com.celestial.layang.profile.ProfileFragment
 
 class MenuActivity : AppCompatActivity() {
@@ -27,7 +27,7 @@ class MenuActivity : AppCompatActivity() {
                 R.id.navigation_Layanan -> {
                     // Tampilkan fragmen layanan di tengah
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, PengajuanFragment())
+                        .replace(R.id.fragment_container, LayananFragment())
                         .commit()
                     true
                 }
