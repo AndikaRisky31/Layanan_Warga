@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="Fasilitas"
+            type="com.celestial.layang.fasilitas.FasilitasModel" />
+    </data>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="182dp"
+    android:background="@drawable/bgrounded"
+    android:layout_marginBottom="20dp"
+    android:paddingBottom="15dp">
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="122dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/nama"
+        android:layout_marginHorizontal="15dp"
+        android:gravity="start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="@{Fasilitas.nama}"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="15dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_light"
+        android:gravity="start"
+        android:text="@{Fasilitas.alamat}"
+        android:textColor="@color/black"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nama" />
+    
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

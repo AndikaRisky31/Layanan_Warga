@@ -10,11 +10,13 @@ import com.celestial.layang.notifikasi.NotifikasiFragment
 import com.celestial.layang.profile.ProfileFragment
 
 class MenuActivity : AppCompatActivity() {
-    private lateinit var binding:ActivityMenuBinding
+    private lateinit var binding: ActivityMenuBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_menu) // Sesuaikan dengan nama layout XML Anda
-
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, BerandaFragment()) // Ganti dengan fragmen awal yang diinginkan
+            .commit()
         binding.bottomNavigationView.setOnItemSelectedListener{ menuItem ->
             when (menuItem.itemId) {
                 R.id.navigation_Beranda -> {
