@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".layanan.persyaratan.DetailsActivity"
+    android:background="@color/primary_color">
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="94dp"
+        tools:layout_editor_absoluteX="3dp"
+        android:background="@color/secondary_color"/>
+
+    <TextView
+        android:id="@+id/textView3"
+        style="@style/H1Text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:text="Persyaratan"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        style="@style/subheadText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Berikut Detail Persyaratan"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <ImageButton
+        android:id="@+id/button_back"
+        style="@style/CustomButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/baseline_arrow_back_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="324dp"
+        android:layout_height="608dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/card_preset">
+
+            <ImageView
+                android:id="@+id/iv_image"
+                android:layout_width="324dp"
+                android:layout_height="210dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_judul"
+                style="@style/pengajuan_judul"
+                android:textStyle="bold"
+                android:layout_width="324dp"
+                android:layout_height="50dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_image" />
+
+
+            <TextView
+                style="@style/text"
+                android:layout_width="match_parent"
+                android:layout_height="348dp"
+                android:text="@string/lorem_ipsum"
+                app:layout_constraintTop_toBottomOf="@+id/tv_judul" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

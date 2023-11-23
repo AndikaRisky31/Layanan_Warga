@@ -35,15 +35,65 @@
         <item name="android:textSize">14sp</item>
         <item name="android:gravity">center</item>
     </style>
+    <style name="pengajuan_card">
+        <item name="android:layout_width">313dp</item>
+        <item name="android:layout_height">167dp</item>
+        <item name="android:radius">14dp</item>
+        <item name="android:background">@drawable/card_preset</item>
+    </style>
+    <style name="pengajuan_judul">
+        <item name="android:layout_width">313dp</item>
+        <item name="android:layout_height">44dp</item>
+        <item name="android:topLeftRadius">14dp</item>
+        <item name="android:topRightRadius">14dp</item>
+        <item name="android:background">@color/primary_color</item>
+        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="pengajuan_subjudul">
+        <item name="android:layout_width">313dp</item>
+        <item name="android:layout_height">44dp</item>
+        <item name="android:topLeftRadius">14dp</item>
+        <item name="android:topRightRadius">14dp</item>
+        <item name="android:background">@color/primary_color</item>
+        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/secondary_color</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="pengajuan_image">
+        <item name="android:layout_width">313dp</item>
+        <item name="android:layout_height">123dp</item>
+        <item name="android:bottomLeftRadius">14dp</item>
+        <item name="android:bottomRightRadius">14dp</item>
+    </style>
+    <style name="H1Text">
+        <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:textColor">@color/primary_color</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="subheadText">
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/primary_color</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+    <style name="text1">
+        <item name="android:textColor">@color/secondary_color</item>
+        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="android:textSize">14sp</item>
+    </style>
     <!-- res/values/styles.xml -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- ... other style attributes ... -->
         <item name="colorPrimary">@color/primary_color</item>
         <item name="colorPrimaryDark">@color/secondary_color</item>
         <item name="colorAccent">@color/Accent</item>
-        <!-- ... other style attributes ... -->
     </style>
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-
 </resources>
