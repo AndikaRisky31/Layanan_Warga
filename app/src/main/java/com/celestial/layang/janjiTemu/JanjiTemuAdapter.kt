@@ -4,13 +4,14 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.celestial.layang.databinding.ItemFasilitasBinding
+import com.bumptech.glide.Glide
+import com.celestial.layang.databinding.ItemKontakBinding
 
 class JanjiTemuAdapter(private val context: Context, private val kontakList: List<KontakModel>) :
     RecyclerView.Adapter<JanjiTemuAdapter.JanjiTemuViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): JanjiTemuViewHolder {
-        val binding = ItemFasilitasBinding.inflate(
+        val binding = ItemKontakBinding.inflate(
             LayoutInflater.from(context),
             parent,
             false
@@ -19,8 +20,7 @@ class JanjiTemuAdapter(private val context: Context, private val kontakList: Lis
     }
 
     override fun onBindViewHolder(holder: JanjiTemuViewHolder, position: Int) {
-        // Implement your binding logic here
-        // Example: holder.bind(kontakList[position])
+        holder.bind(kontakList[position])
     }
 
     override fun getItemCount(): Int {
@@ -28,9 +28,15 @@ class JanjiTemuAdapter(private val context: Context, private val kontakList: Lis
     }
 
     // Define your JanjiTemuViewHolder class
-    class JanjiTemuViewHolder(binding: ItemFasilitasBinding) :
+    class JanjiTemuViewHolder(private val binding: ItemKontakBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        // Implement your ViewHolder logic here
-        // Example: val textView = binding.textView
+        fun bind(kontak: KontakModel) {
+            binding.kontak = kontak
+            Glide.with(itemView)
+                .load(kontak.imageUrl)
+                .centerCrop()
+                .into(binding.photoprofile)
+            binding.executePendingBindings()
+        }
     }
 }
