@@ -17,11 +17,10 @@ class ProfileKontakActivity : AppCompatActivity() {
         janjiTemuViewModel = ViewModelProvider(this)[JanjiTemuViewModel::class.java]
 
         // Mengambil ID dari intent
-        val kontakId: Int? = intent.getIntExtra("kontak_id", -1)
+        val kontakId: Int = intent.getIntExtra("kontak_id", -1)
 
-        kontakId?.let { id ->
-            // Mendapatkan model dengan ID yang sesuai dari ViewModel
-            val kontak: KontakModel? = janjiTemuViewModel.getKontakById(kontakId.toInt())
+        kontakId.let {
+            val kontak: KontakModel? = janjiTemuViewModel.getKontakById(kontakId)
 
             kontak?.let {
                 binding.apply {
@@ -29,13 +28,10 @@ class ProfileKontakActivity : AppCompatActivity() {
                     this.kontak = it
                     executePendingBindings()
 
-                    // Misalnya, bind gambar profil menggunakan Glide
                     Glide.with(imageProfileKontak)
                         .load(it.imageUrl)
                         .centerCrop()
                         .into(imageProfileKontak)
-
-                    // ... Bind data lainnya sesuai kebutuhan
                 }
             }
         }

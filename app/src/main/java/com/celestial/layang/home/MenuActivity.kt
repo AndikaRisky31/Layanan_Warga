@@ -13,11 +13,17 @@ class MenuActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMenuBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_menu) // Sesuaikan dengan nama layout XML Anda
+        binding = DataBindingUtil.setContentView(
+            this,
+            R.layout.activity_menu
+        ) // Sesuaikan dengan nama layout XML Anda
         supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, BerandaFragment()) // Ganti dengan fragmen awal yang diinginkan
+            .replace(
+                R.id.fragment_container,
+                BerandaFragment()
+            ) // Ganti dengan fragmen awal yang diinginkan
             .commit()
-        binding.bottomNavigationView.setOnItemSelectedListener{ menuItem ->
+        binding.bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.navigation_Beranda -> {
                     // Tampilkan fragmen home di tengah
@@ -26,6 +32,7 @@ class MenuActivity : AppCompatActivity() {
                         .commit()
                     true
                 }
+
                 R.id.navigation_Layanan -> {
                     // Tampilkan fragmen layanan di tengah
                     supportFragmentManager.beginTransaction()
@@ -33,6 +40,7 @@ class MenuActivity : AppCompatActivity() {
                         .commit()
                     true
                 }
+
                 R.id.navigation_Notifikasi -> {
                     // Tampilkan fragmen notifikasi di tengah
                     supportFragmentManager.beginTransaction()
@@ -40,13 +48,15 @@ class MenuActivity : AppCompatActivity() {
                         .commit()
                     true
                 }
+
                 R.id.navigation_Profile -> {
-                    // Tampilkan fragmen profil di tengah
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.fragment_container, ProfileFragment())
                         .commit()
+
                     true
                 }
+
                 else -> false
             }
         }

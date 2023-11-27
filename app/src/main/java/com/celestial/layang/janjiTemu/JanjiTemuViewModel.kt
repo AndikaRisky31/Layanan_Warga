@@ -6,7 +6,7 @@ class JanjiTemuViewModel : ViewModel() {
     private val kontakList: List<KontakModel> = listOf(
         KontakModel(
             1,
-            "https://pixabay.com/get/g4063bc9f77ff9bc64834769abdf16dc67495d925d4a6ec50d25da7fb5910a7b86057e3a2e3410139698a94bda2726307_1280.jpg",
+            "https://pixabay.com/get/g797a567e66b6675028e833f5ad9ffa1c92863dab75987aa77404f433cc7b567595bfdfa98934e3aa4bc278953abebe75_1280.jpg",
             "John Doe",
             "Pegawai",
             "123456789",
