@@ -27,6 +27,16 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <ImageButton
+                android:id="@+id/button_back"
+                style="@style/CustomButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:src="@drawable/baseline_arrow_back_24"
+                app:layout_constraintBottom_toBottomOf="@+id/view"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
             <TextView
                 android:id="@+id/header"
                 android:layout_width="wrap_content"
@@ -55,10 +65,11 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/listkontak"
-                android:layout_width="293dp"
+                android:layout_width="330dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:nestedScrollingEnabled="false"
+                tools:listitem="@layout/item_kontak"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintVertical_bias="0"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -8,7 +8,8 @@
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/primary_color">
 
     <View
         android:id="@+id/view2"
@@ -36,7 +37,7 @@
         android:id="@+id/profileNama"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Andika Risky Faizatama"
+        android:text="@{Kontak.nama}"
         android:textSize="25sp"
         style="@style/h1Text"
         android:gravity="center_horizontal"
@@ -59,8 +60,8 @@
 
     <LinearLayout
         android:id="@+id/boxmenu"
-        android:layout_width="330dp"
-        android:layout_height="87dp"
+        android:layout_width="260dp"
+        android:layout_height="100dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,6 +70,7 @@
         <LinearLayout
             android:id="@+id/icFasilitas"
             android:layout_width="0dp"
+            android:layout_marginHorizontal="10dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:background="@drawable/roundedprofile"
@@ -78,15 +80,15 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginVertical="5dp"
+                android:layout_marginVertical="10dp"
                 android:layout_weight="1"
-                android:src="@drawable/ic_fasilitas" />
+                android:src="@drawable/ic_message" />
 
             <TextView
                 style="@style/text"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_weight="0.7"
                 android:gravity="center_horizontal"
                 android:text="WhatsApp" />
         </LinearLayout>
@@ -94,7 +96,7 @@
         <LinearLayout
             android:id="@+id/icJanjiTemu"
             android:layout_width="0dp"
-            android:layout_marginHorizontal="25dp"
+            android:layout_marginHorizontal="10dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:background="@drawable/roundedprofile"
@@ -103,44 +105,122 @@
 
             <ImageView
                 android:layout_width="match_parent"
+                android:layout_marginVertical="10dp"
                 android:layout_height="0dp"
-                android:layout_marginVertical="5dp"
                 android:layout_weight="1"
-                android:src="@drawable/ic_email" />
+                android:padding="5dp"
+                android:src="@drawable/ic_email2" />
 
             <TextView
                 style="@style/text"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_weight="0.7"
                 android:gravity="center_horizontal"
                 android:text="Email" />
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:background="@drawable/roundedprofile"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginVertical="5dp"
-                android:layout_weight="1"
-                android:src="@drawable/ic_beranda" />
-
-            <TextView
-                style="@style/text"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:text="Alamat" />
-        </LinearLayout>
     </LinearLayout>
-
+    <LinearLayout
+        android:id="@+id/boxtelfon"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/roundedprofile"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="15dp"
+        android:layout_marginTop="35dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/boxmenu">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_light"
+            android:textSize="13sp"
+            android:textColor="@color/black"
+            android:text="No Telepon"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:text="@{Kontak.nomor}"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/boxalamat"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/roundedprofile"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="15dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/boxtelfon">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_light"
+            android:textSize="13sp"
+            android:textColor="@color/black"
+            android:text="Alamat Lengkap"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:text="@{Kontak.alamat}"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/roundedprofile"
+        android:padding="10dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/boxalamat">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:text="Jadwal Akhir"
+            android:gravity="center_horizontal"/>
+        <Button
+            android:layout_width="61dp"
+            android:layout_height="20dp"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="10sp"
+            android:gravity="center"
+            android:text="Sesi 1"
+            android:textColor="@color/white"
+            android:background="@drawable/button_preset"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="@{Kontak.jadwal}"/>
+        <Button
+            android:layout_width="61dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="10sp"
+            android:gravity="center"
+            android:text="Sesi 2"
+            android:textColor="@color/white"
+            android:background="@drawable/button_preset"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="@{Kontak.jadwal}"/>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

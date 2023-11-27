@@ -30,5 +30,8 @@ class FasilitasActivity : AppCompatActivity() {
         recyclerView.adapter = fasilitasAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
+        binding.buttonBack.setOnClickListener{
+            onBackPressedDispatcher.onBackPressed()
+        }
     }
 }
