@@ -13,6 +13,7 @@ class ProfileRepository {
             Nomor = "123456789",
             Email = "john.doe@example.com",
             Alamat = "123 Main Street",
+            pangkat = "Warga",
             tempatLahir = "City",
             TanggalLahir = LocalDate.of(1990, 1, 1) // Sesuaikan dengan tanggal lahir yang sesuai
         )

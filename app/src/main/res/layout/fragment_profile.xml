@@ -50,7 +50,7 @@
             android:id="@+id/pangkat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RT 001"
+            android:text="@{viewModel.profile.pangkat}"
             android:textColor="@color/secondary_color"
             android:fontFamily="@font/poppins_light"
             android:textSize="15sp"
@@ -58,71 +58,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/profileNama"/>
-
         <LinearLayout
-            android:id="@+id/boxmenu"
-            android:layout_width="260dp"
-            android:layout_height="100dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pangkat">
-
-            <LinearLayout
-                android:id="@+id/icFasilitas"
-                android:layout_width="0dp"
-                android:layout_marginHorizontal="10dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/roundedprofile"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_marginVertical="10dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/ic_message" />
-
-                <TextView
-                    style="@style/text"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.7"
-                    android:gravity="center_horizontal"
-                    android:text="WhatsApp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/icJanjiTemu"
-                android:layout_width="0dp"
-                android:layout_marginHorizontal="10dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/roundedprofile"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_marginVertical="10dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:padding="5dp"
-                    android:src="@drawable/ic_email2" />
-
-                <TextView
-                    style="@style/text"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.7"
-                    android:gravity="center_horizontal"
-                    android:text="Email" />
-            </LinearLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/boxtelfon"
+            android:id="@+id/boxemail"
             android:layout_width="330dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -132,7 +69,35 @@
             android:layout_marginTop="35dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/boxmenu">
+            app:layout_constraintTop_toBottomOf="@id/pangkat">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_light"
+                android:textSize="13sp"
+                android:textColor="@color/black"
+                android:text="Email"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:text="@{viewModel.profile.email}"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/boxtelfon"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/roundedprofile"
+            android:paddingVertical="5dp"
+            android:paddingHorizontal="15dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/boxemail">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -149,7 +114,7 @@
                 android:text="@{viewModel.profile.nomor}"/>
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/boxalamat"
+            android:id="@+id/boxTTL"
             android:layout_width="330dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -166,6 +131,33 @@
                 android:fontFamily="@font/poppins_light"
                 android:textSize="13sp"
                 android:textColor="@color/black"
+                android:text="Tempat,Tanggal Lahir"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:text="@{viewModel.profile.tempatLahir+','+viewModel.profile.tanggalLahir}"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/boxalamat"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/roundedprofile"
+            android:paddingVertical="5dp"
+            android:paddingHorizontal="15dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/boxTTL">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_light"
+                android:textSize="13sp"
+                android:textColor="@color/black"
                 android:text="Alamat Lengkap"/>
             <TextView
                 android:layout_width="match_parent"
@@ -175,25 +167,6 @@
                 android:textColor="@color/black"
                 android:text="@{viewModel.profile.alamat}"/>
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="330dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/roundedprofile"
-            android:padding="10dp"
-            android:layout_marginTop="20dp"
-            android:orientation="vertical"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/boxalamat">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_bold"
-                android:textSize="12sp"
-                android:textColor="@color/black"
-                android:text="Jadwal Akhir"
-                android:gravity="center_horizontal"/>
 
-        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -11,6 +11,7 @@ data class ProfileModel(
     val Nomor: String,
     val Email: String,
     val Alamat: String,
+    val pangkat:String,
     val tempatLahir: String,
     val TanggalLahir: LocalDate
 ) : Parcelable

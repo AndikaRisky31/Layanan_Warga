@@ -12,7 +12,7 @@ import com.celestial.layang.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment() {
 
-    private lateinit var viewModel: ProfileViewModel
+    private lateinit var profileviewmodel: ProfileViewModel
     private lateinit var binding: FragmentProfileBinding
 
     override fun onCreateView(
@@ -21,19 +21,22 @@ class ProfileFragment : Fragment() {
     ): View {
         // Inflating the layout with Data Binding
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
-        viewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
+
+        // Create an instance of ProfileRepository (you might need to pass necessary parameters)
+        val profileRepository = ProfileRepository() // You need to provide a valid implementation
+        val viewModelFactory = ProfileViewModelFactory(profileRepository)
+        profileviewmodel = ViewModelProvider(this, viewModelFactory)[ProfileViewModel::class.java]
 
         // Bind the ViewModel to the layout
-        binding.viewModel = viewModel
+        binding.viewModel = profileviewmodel
         binding.lifecycleOwner = this
 
         return binding.root
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        // Load profile data when the fragment is created
-        viewModel.loadProfile("1")
+        profileviewmodel.loadProfile("1")
     }
 }
