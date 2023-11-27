@@ -9,7 +9,6 @@ import com.celestial.layang.databinding.ActivityJanjiTemuBinding
 
 class JanjiTemuActivity : AppCompatActivity() {
     private lateinit var binding:ActivityJanjiTemuBinding
-    private lateinit var janjitemuadapter:JanjiTemuAdapter
     private  lateinit var janjitemuViewModel:JanjiTemuViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

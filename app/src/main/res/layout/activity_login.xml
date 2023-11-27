@@ -36,7 +36,7 @@
     <TextView
         android:id="@+id/text1"
         style="@style/text"
-        android:layout_width="wrap_content"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:text="Masuk akun untuk mulai menggunakan layanan warga"
         app:layout_constraintEnd_toEndOf="parent"
