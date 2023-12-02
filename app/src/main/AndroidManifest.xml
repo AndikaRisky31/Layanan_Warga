@@ -13,6 +13,14 @@
         android:theme="@style/Theme.LayananWarga"
         tools:targetApi="31">
         <activity
+            android:name=".fasilitas.FasilitasActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity
+            android:name=".janjiTemu.JanjiTemuActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity
             android:name=".layanan.persyaratan.DetailsActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.NoActionBar"/>
