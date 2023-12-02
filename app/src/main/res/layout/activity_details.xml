@@ -45,7 +45,9 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="324dp"
-        android:layout_height="608dp"
+        android:layout_height="615dp"
+        app:cardCornerRadius="14dp"
+        app:cardElevation="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,7 +56,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/card_preset">
+            android:background="@color/primary_color">
 
             <ImageView
                 android:id="@+id/iv_image"
@@ -79,7 +81,10 @@
                 style="@style/text"
                 android:layout_width="match_parent"
                 android:layout_height="348dp"
+                android:textSize="12sp"
+                android:textAlignment="viewStart"
                 android:text="@string/lorem_ipsum"
+                android:paddingHorizontal="14dp"
                 app:layout_constraintTop_toBottomOf="@+id/tv_judul" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
