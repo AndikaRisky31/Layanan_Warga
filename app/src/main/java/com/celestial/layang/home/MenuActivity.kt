@@ -1,10 +1,12 @@
 package com.celestial.layang.home
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.celestial.layang.R
 import com.celestial.layang.databinding.ActivityMenuBinding
+import com.celestial.layang.lapor.LaporActivity
 import com.celestial.layang.layanan.LayananFragment
 import com.celestial.layang.notifikasi.NotifikasiFragment
 import com.celestial.layang.profile.ProfileFragment
@@ -31,6 +33,11 @@ class MenuActivity : AppCompatActivity() {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.fragment_container, LayananFragment())
                         .commit()
+                    true
+                }R.id.navigation_Lapor -> {
+                    // Tampilkan activity lapor
+                    intent = Intent(this,LaporActivity::class.java)
+                    startActivity(intent)
                     true
                 }
                 R.id.navigation_Notifikasi -> {
