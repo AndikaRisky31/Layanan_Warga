@@ -16,4 +16,22 @@
         <item>Surat Pengantar Pembuatan KK</item>
         <item>Surat Keterangan Tidak Mampu</item>
     </string-array>
+    <string-array name="proses">
+        <item>Diproses</item>
+        <item>Disetujui</item>
+        <item>Ditolak</item>
+        <item>Disetujui</item>
+    </string-array>
+    <string-array name="judul_riwayat">
+        <item>asdkjasd</item>
+        <item>asdkjasd</item>
+        <item>asdkjasd</item>
+        <item>asdkjasd</item>
+    </string-array>
+    <string-array name="tanggal_riwayat">
+        <item>22/04/2023</item>
+        <item>22/04/2021</item>
+        <item>22/04/2022</item>
+        <item>22/04/2020</item>
+    </string-array>
 </resources>

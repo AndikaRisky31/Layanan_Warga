@@ -11,6 +11,7 @@ import com.celestial.layang.databinding.LayananItemBinding
 import com.celestial.layang.layanan.LayananFragment
 import com.celestial.layang.layanan.pengajuan.PengajuanFragment
 import com.celestial.layang.layanan.persyaratan.PersyaratanFragment
+import com.celestial.layang.layanan.riwayat.RiwayatFragment
 
 class LayananAdapter(private val list: List<LayananModel>, private val context: LayananFragment) :
     RecyclerView.Adapter<LayananAdapter.ViewHolder>() {
@@ -50,7 +51,7 @@ class LayananAdapter(private val list: List<LayananModel>, private val context: 
         return when (index) {
             0 -> PengajuanFragment()
             1 -> PersyaratanFragment()
-            // Tambahkan case untuk indeks-indeks fragment lainnya di sini
+            2 -> RiwayatFragment()
             else -> null
         }
     }
