@@ -4,7 +4,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.celestial.layang.profile.ProfileViewModel" />
+            type="com.celestial.layang.profile.ProfileEditViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -39,7 +39,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_3dot"
-            android:onClick="@{viewModel::showPopupMenu}"
             app:layout_constraintBottom_toBottomOf="@+id/view2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -60,30 +59,33 @@
             app:riv_border_width="3dp"
             android:scaleType="fitCenter"
             android:src="@drawable/img_4"/>
-        <TextView
-            android:id="@+id/profileNama"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:id="@+id/boxname"
+            android:layout_width="330dp"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.profile.nama}"
-            android:textSize="25sp"
-            style="@style/h1Text"
-            android:gravity="center_horizontal"
-            android:layout_marginHorizontal="30dp"
+            android:orientation="vertical"
+            android:background="@drawable/roundedprofile"
+            android:paddingVertical="5dp"
+            android:paddingHorizontal="15dp"
+            android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/imageProfileKontak"/>
-        <TextView
-            android:id="@+id/pangkat"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{viewModel.profile.pangkat}"
-            android:textColor="@color/secondary_color"
-            android:fontFamily="@font/poppins_light"
-            android:textSize="15sp"
-            android:gravity="center_horizontal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profileNama"/>
+            app:layout_constraintTop_toBottomOf="@id/imageProfileKontak">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_light"
+                android:textSize="13sp"
+                android:textColor="@color/black"
+                android:text="Nama"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:text="@{viewModel.profile.nama}"/>
+        </LinearLayout>
         <LinearLayout
             android:id="@+id/boxemail"
             android:layout_width="330dp"
@@ -92,10 +94,10 @@
             android:background="@drawable/roundedprofile"
             android:paddingVertical="5dp"
             android:paddingHorizontal="15dp"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/pangkat">
+            app:layout_constraintTop_toBottomOf="@id/boxname">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -103,7 +105,7 @@
                 android:textSize="13sp"
                 android:textColor="@color/black"
                 android:text="Email"/>
-            <TextView
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
@@ -111,7 +113,6 @@
                 android:textColor="@color/black"
                 android:text="@{viewModel.profile.email}"/>
         </LinearLayout>
-
         <LinearLayout
             android:id="@+id/boxtelfon"
             android:layout_width="330dp"
@@ -131,7 +132,7 @@
                 android:textSize="13sp"
                 android:textColor="@color/black"
                 android:text="No Telepon"/>
-            <TextView
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
@@ -140,7 +141,7 @@
                 android:text="@{viewModel.profile.nomor}"/>
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/boxTTL"
+            android:id="@+id/boxalamat"
             android:layout_width="330dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -157,35 +158,8 @@
                 android:fontFamily="@font/poppins_light"
                 android:textSize="13sp"
                 android:textColor="@color/black"
-                android:text="Tempat,Tanggal Lahir"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_regular"
-                android:textSize="15sp"
-                android:textColor="@color/black"
-                android:text="@{viewModel.profile.tempatLahir+','+viewModel.profile.tanggalLahir}"/>
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/boxalamat"
-            android:layout_width="330dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/roundedprofile"
-            android:paddingVertical="5dp"
-            android:paddingHorizontal="15dp"
-            android:layout_marginTop="20dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/boxTTL">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_light"
-                android:textSize="13sp"
-                android:textColor="@color/black"
                 android:text="Alamat Lengkap"/>
-            <TextView
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
@@ -193,6 +167,20 @@
                 android:textColor="@color/black"
                 android:text="@{viewModel.profile.alamat}"/>
         </LinearLayout>
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="113dp"
+            android:layout_height="50dp"
+            android:background="@color/green"
+            android:text="Simpan"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.875"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/boxalamat"
+            app:layout_constraintVertical_bias="0.175" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -13,40 +13,56 @@ class MenuActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMenuBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_menu) // Sesuaikan dengan nama layout XML Anda
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, BerandaFragment()) // Ganti dengan fragmen awal yang diinginkan
-            .commit()
-        binding.bottomNavigationView.setOnItemSelectedListener{ menuItem ->
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_menu)
+        val navigateToProfile = intent.getBooleanExtra("navigateToProfile", false)
+        if(navigateToProfile){
+            binding.bottomNavigationView.selectedItemId = R.id.navigation_Profile
+            supportFragmentManager.beginTransaction()
+                .replace(
+                    R.id.fragment_container,
+                    ProfileFragment()
+                )
+                .commit()
+            intent.removeExtra("navigateToProfile")
+        }else {
+            supportFragmentManager.beginTransaction()
+                .replace(
+                    R.id.fragment_container,
+                    BerandaFragment()
+                )
+                .commit()
+        }
+        binding.bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.navigation_Beranda -> {
-                    // Tampilkan fragmen home di tengah
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.fragment_container, BerandaFragment())
                         .commit()
                     true
                 }
+
                 R.id.navigation_Layanan -> {
-                    // Tampilkan fragmen layanan di tengah
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.fragment_container, LayananFragment())
                         .commit()
                     true
                 }
+
                 R.id.navigation_Notifikasi -> {
-                    // Tampilkan fragmen notifikasi di tengah
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.fragment_container, NotifikasiFragment())
                         .commit()
                     true
                 }
+
                 R.id.navigation_Profile -> {
-                    // Tampilkan fragmen profil di tengah
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.fragment_container, ProfileFragment())
                         .commit()
+
                     true
                 }
+
                 else -> false
             }
         }
