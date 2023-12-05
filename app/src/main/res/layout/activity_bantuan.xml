@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".bantuan.BantuanActivity">
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="94dp"
+        tools:layout_editor_absoluteX="3dp"
+        android:background="@color/secondary_color"/>
+
+    <TextView
+        android:id="@+id/textView3"
+        style="@style/H1Text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:text="Bantuan"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView13"
+        style="@style/subheadText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pilih Jenis Bantuan yang ingin kamu sampaikan "
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <ImageButton
+        android:id="@+id/button_back"
+        style="@style/CustomButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/baseline_arrow_back_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="332dp"
+        android:layout_height="196dp"
+        android:layout_marginTop="14dp"
+        app:cardCornerRadius="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/primary_color">
+
+            <ImageButton
+                android:id="@+id/btn_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/primary_color"
+                android:layout_gravity="bottom|center"
+                android:src="@drawable/baseline_perm_media_24" />
+
+            <TextView
+                android:id="@+id/media_description1"
+                style="@style/text1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="130dp"
+                android:text="Anda Dapat Memasukkan \n File Screenshot disini"
+                android:textAlignment="center"
+                android:textColor="@color/stroke_color" />
+
+            <ImageView
+                android:id="@+id/iv_lapor"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#00000000" />
+
+        </FrameLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_nama"
+        android:layout_width="332dp"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="14dp"
+        app:cardElevation="4dp"
+        android:layout_marginTop="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primary_color">
+
+            <TextView
+                style="@style/text1"
+                android:layout_width="150dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="8dp"
+                android:gravity="center|start"
+                android:text="Nama Lengkap"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/et_nama"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="bottom|start"
+                        android:layout_marginTop="35dp"
+                        android:inputType="textMultiLine"
+                        android:textColor="@color/black"
+                        android:minLines="1"
+                        android:maxLines="10" />
+
+                </LinearLayout>
+            </ScrollView>
+        </FrameLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_jenis"
+        android:layout_width="332dp"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="14dp"
+        app:cardElevation="4dp"
+        android:layout_marginTop="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cv_nama">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primary_color">
+
+            <TextView
+                style="@style/text1"
+                android:layout_width="150dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="8dp"
+                android:gravity="center|start"
+                android:text="Jenis Permasalahan"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/et_jenis"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="bottom|start"
+                        android:layout_marginTop="35dp"
+                        android:inputType="textMultiLine"
+                        android:textColor="@color/black"
+                        android:minLines="1"
+                        android:maxLines="10" />
+
+                </LinearLayout>
+            </ScrollView>
+
+        </FrameLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_desc"
+        android:layout_width="332dp"
+        android:layout_height="wrap_content"
+        android:background="@color/primary_color"
+        app:cardCornerRadius="14dp"
+        app:cardElevation="4dp"
+        android:layout_marginTop="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cv_jenis">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primary_color">
+
+            <TextView
+                style="@style/text1"
+                android:layout_width="150dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="8dp"
+                android:gravity="center|start"
+                android:text="Deskripsi"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/et_desc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="bottom|start"
+                        android:layout_marginTop="35dp"
+                        android:inputType="textMultiLine"
+                        android:textColor="@color/black"
+                        android:minLines="1"
+                        android:maxLines="10" />
+
+                </LinearLayout>
+            </ScrollView>
+        </FrameLayout>
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/button_kirim"
+        style="@style/CustomButtonStyle"
+        android:layout_width="230dp"
+        android:layout_height="50dp"
+        android:text="Kirim"
+        android:layout_marginTop="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cv_desc" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
