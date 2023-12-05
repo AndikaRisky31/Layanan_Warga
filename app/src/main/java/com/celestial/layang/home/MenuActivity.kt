@@ -69,7 +69,6 @@ class MenuActivity : AppCompatActivity() {
 
                     true
                 }
-
                 else -> false
             }
         }

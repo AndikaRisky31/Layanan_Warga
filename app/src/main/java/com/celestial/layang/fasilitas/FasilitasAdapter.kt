@@ -29,7 +29,6 @@ class FasilitasAdapter(private val context: Context, private val fasilitasList: 
 
     class FasilitasViewHolder(private val binding: ItemFasilitasBinding) :
         RecyclerView.ViewHolder(binding.root) {
-
         fun bind(fasilitas: FasilitasModel) {
             binding.fasilitas = fasilitas
             Glide.with(itemView)
