@@ -8,8 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.celestial.layang.api.ApiClient
 import com.celestial.layang.api.ApiService
 import com.celestial.layang.databinding.ActivityRegisterBinding
-import com.celestial.layang.model.ResponseObject
-import com.celestial.layang.model.User
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -38,7 +36,7 @@ class RegisterActivity : AppCompatActivity() {
         val username = binding.inputUsername.toString()
         val email = binding.inputEmail.toString()
         val userPassword = binding.password.toString()
-
+/*
         // Membuat objek User
         val user = User(username = username, userpassword = userPassword, email = email)
 
@@ -56,7 +54,7 @@ class RegisterActivity : AppCompatActivity() {
             override fun onFailure(call: Call<ResponseObject>, t: Throwable) {
                 // Handle kegagalan koneksi atau request
             }
-        })
+        })*/
     }
 
 }
