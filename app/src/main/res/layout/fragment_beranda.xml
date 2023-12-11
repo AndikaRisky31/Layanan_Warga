@@ -121,6 +121,7 @@
                         android:text="Janji Temu"/>
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/icBantuan"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -186,6 +187,7 @@
                 android:layout_marginTop="12dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:orientation="horizontal"
+                tools:listitem="@layout/item_berita"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintEnd_toEndOf="parent"

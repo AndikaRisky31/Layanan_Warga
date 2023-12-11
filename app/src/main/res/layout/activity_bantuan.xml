@@ -4,13 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/primary_color"
     tools:context=".bantuan.BantuanActivity">
+
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="94dp"
-        tools:layout_editor_absoluteX="3dp"
-        android:background="@color/secondary_color"/>
+        android:background="@color/secondary_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView3"
