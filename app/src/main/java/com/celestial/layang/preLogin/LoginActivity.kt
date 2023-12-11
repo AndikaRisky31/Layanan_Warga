@@ -9,7 +9,9 @@ import com.celestial.layang.api.ApiClient
 import com.celestial.layang.api.ApiService
 import com.celestial.layang.databinding.ActivityLoginBinding
 import com.celestial.layang.home.MenuActivity
+import com.celestial.layang.model.LoginRequest
 import com.celestial.layang.model.LoginResponse
+import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -36,11 +38,13 @@ class LoginActivity : AppCompatActivity() {
         }
         //event listener button login
         binding.buttonMasuk.setOnClickListener {
-            loginUser(binding.inputUsername.toString(),binding.password.toString())
+            loginUser(binding.inputUsername.text.toString(),binding.password.text.toString())
         }
     }
     private fun loginUser(username: String, password: String) {
-        val call = apiService.login(username, password)
+        val loginRequest = LoginRequest(username = username, userPassword = password)
+
+        val call = apiService.login(loginRequest)
         call.enqueue(object : Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 if (response.isSuccessful) {
@@ -50,7 +54,8 @@ class LoginActivity : AppCompatActivity() {
                     startActivity(intent)
                     Toast.makeText(this@LoginActivity, "Login Berhasil ${loginResponse?.userId}", Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(this@LoginActivity, "data tidak ada", Toast.LENGTH_SHORT).show()
+                    Log.e("Loginnnn", "HTTP Status Code: ${response.code()}")
+                    Toast.makeText(this@LoginActivity, "$username dan $password", Toast.LENGTH_SHORT).show()
                 }
             }
 

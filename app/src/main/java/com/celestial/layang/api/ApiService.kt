@@ -1,5 +1,6 @@
 package com.celestial.layang.api
 
+import com.celestial.layang.model.LoginRequest
 import com.celestial.layang.model.LoginResponse
 import com.celestial.layang.model.ResponseObject
 import com.celestial.layang.model.User
@@ -13,13 +14,9 @@ import retrofit2.http.POST
 interface ApiService {
 
     // Menggunakan @POST untuk menandai metode POST
-    @POST("api/users/create")
+    @POST("users/create")
     fun addUser(@Body user: User): Call<ResponseObject>
 
-    @FormUrlEncoded
-    @POST("api/login")
-    fun login(
-        @Field("username") username: String,
-        @Field("password") password: String
-    ): Call<LoginResponse>
+    @POST("user/login")
+    fun login(@Body body: LoginRequest): Call<LoginResponse>
 }
