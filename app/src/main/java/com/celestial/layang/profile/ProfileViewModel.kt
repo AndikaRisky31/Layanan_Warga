@@ -1,6 +1,5 @@
 package com.celestial.layang.profile
 
-import android.content.Context
 import android.content.Intent
 import android.view.View
 import androidx.appcompat.view.ContextThemeWrapper
@@ -10,21 +9,23 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.celestial.layang.R
-import com.celestial.layang.repository.UserPreferences
+import com.celestial.layang.model.UserData
+import com.celestial.layang.profileedit.ProfileEditActivity
+import com.celestial.layang.repository.ProfileRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class ProfileViewModel(private val repository: ProfileRepository) : ViewModel() {
 
-    private val _profile = MutableLiveData<ProfileModel>()
-    val profile: LiveData<ProfileModel>
+    private val _profile = MutableLiveData<UserData>()
+    val profile: LiveData<UserData>
         get() = _profile
 
     fun loadProfile() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val result = repository.getProfile()
+                val result = repository.userData()
                 withContext(Dispatchers.Main) {
                     _profile.value = result
                 }

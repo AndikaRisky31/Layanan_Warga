@@ -1,4 +1,4 @@
-package com.celestial.layang.profile
+package com.celestial.layang.profileedit
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -7,25 +7,26 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.celestial.layang.api.ApiClient
 import com.celestial.layang.api.ApiService
-import com.celestial.layang.model.updateResponse
+import com.celestial.layang.model.UpdateResponse
+import com.celestial.layang.model.UserData
+import com.celestial.layang.repository.ProfileRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.time.LocalDate
 
 class ProfileEditViewModel(private val profileRepository: ProfileRepository) : ViewModel() {
 
     private lateinit var apiService: ApiService
-    private val _profile = MutableLiveData<ProfileModel>()
-    val profile: LiveData<ProfileModel> get() = _profile
+    private val _profile = MutableLiveData<UserData>()
+    val profile: LiveData<UserData> get() = _profile
 
     fun loadProfile() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val result = profileRepository.getProfile()
+                val result = profileRepository.userData()
                 withContext(Dispatchers.Main) {
                     _profile.value = result
                 }
@@ -36,13 +37,13 @@ class ProfileEditViewModel(private val profileRepository: ProfileRepository) : V
     }
 
 
-    fun saveProfile(profileData: ProfileModel) {
+    fun saveUserData(userData: UserData) {
         apiService = ApiClient.apiService
-        val call: Call<updateResponse> = apiService.updateUser(profileData)
+        val call: Call<UpdateResponse> = apiService.updateUser(userData)
 
         // Enqueue the network request asynchronously
-        call.enqueue(object : Callback<updateResponse> {
-            override fun onResponse(call: Call<updateResponse>, response: Response<updateResponse>) {
+        call.enqueue(object : Callback<UpdateResponse> {
+            override fun onResponse(call: Call<UpdateResponse>, response: Response<UpdateResponse>) {
                 if (response.isSuccessful) {
                     Log.e("Update profileee", "Update successful - ${response.message()}")
                 } else {
@@ -52,7 +53,7 @@ class ProfileEditViewModel(private val profileRepository: ProfileRepository) : V
                 }
             }
 
-            override fun onFailure(call: Call<updateResponse>, t: Throwable) {
+            override fun onFailure(call: Call<UpdateResponse>, t: Throwable) {
                 Log.e("Update Profileee", "Failure: ${t.message}")
                 // Handle failure appropriately, e.g., retrying the request or showing an error message
             }

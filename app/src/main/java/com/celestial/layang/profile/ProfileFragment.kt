@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.databinding.DataBindingUtil
 import com.celestial.layang.R
 import com.celestial.layang.databinding.FragmentProfileBinding
+import com.celestial.layang.repository.ProfileRepository
 
 class ProfileFragment : Fragment() {
 

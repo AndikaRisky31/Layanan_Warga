@@ -1,8 +1,5 @@
 package com.celestial.layang.model
 
-import com.celestial.layang.profile.ProfileModel
-import java.time.LocalDate
-
 data class UserData(
     val user_id: Int,
     val kelurahan_id:Int,
@@ -23,7 +20,26 @@ data class LoginRequest(
     val userPassword: String,
 )
 
-data class updateResponse(
+data class UpdateResponse(
     val message: String,
-    val data: ProfileModel
+    val data: UserData
+)
+
+data class AgendaItem(
+    val agenda_id:Int,
+    val kelurahan_id: Int,
+    val judul:String,
+    val imageURL:String,
+    val tanggal:String,
+    val tempat:String
+)
+data class AgendaRequest(
+    val kelurahan_id: String
+    )
+data class AgendaResponse(
+    val message: String,
+    val data:List<AgendaItem>
+)
+data class UserRequest(
+    val user_id: Int
 )

@@ -4,7 +4,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.celestial.layang.profile.ProfileEditViewModel" />
+            type="com.celestial.layang.profileedit.ProfileEditViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_semibold"
-            android:text="Profile"
+            android:text="Edit Profile"
             android:textColor="@color/white"
             android:textSize="25sp"
             app:layout_constraintBottom_toBottomOf="@+id/view2"
@@ -33,18 +33,6 @@
             app:layout_constraintVertical_bias="0.2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-        <ImageButton
-            android:id="@+id/button3dot"
-            style="@style/CustomButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_3dot"
-            app:layout_constraintBottom_toBottomOf="@+id/view2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_bias="0.92"
-            app:layout_constraintVertical_bias="0.20"/>
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/imageProfileKontak"
@@ -85,7 +73,7 @@
                 android:fontFamily="@font/poppins_regular"
                 android:textSize="15sp"
                 android:textColor="@color/black"
-                android:text="@{viewModel.profile.nama}"/>
+                android:text="@{viewModel.profile.username}"/>
         </LinearLayout>
         <LinearLayout
             android:id="@+id/boxemail"

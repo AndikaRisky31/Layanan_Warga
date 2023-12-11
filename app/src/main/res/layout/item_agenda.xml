@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="agendaItem"
+            type="com.celestial.layang.model.AgendaItem" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        android:background="@drawable/bgrounded"
+        android:layout_marginBottom="20dp"
+        android:paddingBottom="15dp">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/imageBerita"
+            android:layout_width="match_parent"
+            android:layout_height="122dp"
+            app:riv_corner_radius_top_right="15dp"
+            app:riv_corner_radius_top_left="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/nama"
+            android:layout_marginHorizontal="15dp"
+            android:gravity="start"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@{agendaItem.judul}"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageBerita" />
+
+        <TextView
+            android:id="@+id/tanggal"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="15dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_light"
+            android:gravity="start"
+            android:text="@{agendaItem.tanggal.toString()}"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/nama" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="15dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_light"
+            android:gravity="start"
+            android:text="@{agendaItem.tempat}"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/tanggal"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

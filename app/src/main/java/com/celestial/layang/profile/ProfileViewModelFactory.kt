@@ -2,6 +2,7 @@ package com.celestial.layang.profile
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.celestial.layang.repository.ProfileRepository
 
 class ProfileViewModelFactory(private val repository: ProfileRepository) : ViewModelProvider.Factory {
 

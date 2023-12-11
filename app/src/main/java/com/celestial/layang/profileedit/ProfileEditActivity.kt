@@ -1,13 +1,18 @@
-package com.celestial.layang.profile
+package com.celestial.layang.profileedit
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import com.celestial.layang.R
 import com.celestial.layang.databinding.ActivityProfileEditBinding
 import com.celestial.layang.home.MenuActivity
+import com.celestial.layang.model.UserData
+import com.celestial.layang.repository.ProfileRepository
+import kotlinx.coroutines.launch
 
 class ProfileEditActivity : AppCompatActivity() {
 
@@ -29,21 +34,30 @@ class ProfileEditActivity : AppCompatActivity() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
         viewModel.loadProfile()
-        val data = profileRepository.getProfile()
-        binding.saveButton.setOnClickListener {
-            viewModel.saveProfile(
-                ProfileModel(
-                    id = data.id,
-                    Nama = binding.inUsername.text.toString(),
-                    Nomor = binding.inNomor.text.toString(),
-                    Email = binding.inEmail.text.toString(),
-                    Alamat = binding.inAlamat.text.toString(),
-                    pangkat = "Warga",
-                    tempatLahir = data.tempatLahir,
-                    TanggalLahir = data.TanggalLahir
+
+        viewModel.viewModelScope.launch {
+            try {
+                val data = profileRepository.userData()
+
+                binding.saveButton.setOnClickListener {
+                    viewModel.saveUserData(
+                        UserData(
+                            user_id = data.user_id,
+                            kelurahan_id = data.kelurahan_id,
+                            username = binding.inUsername.text.toString(),
+                            nomor = binding.inNomor.text.toString(),
+                            email = binding.inEmail.text.toString(),
+                            alamat = binding.inAlamat.text.toString(),
+                            tempatLahir = data.tempatLahir,
+                            TanggalLahir = data.TanggalLahir
+                        )
                     )
-            )
-            navigateBackToProfileFragment()
+                    navigateBackToProfileFragment()
+                }
+            } catch (e: Exception) {
+                // Handle exceptions, show error message, log, etc.
+                Log.e("Error", "Error fetching profile data: ${e.message}", e)
+            }
         }
     }
 
