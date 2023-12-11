@@ -23,7 +23,9 @@ class ProfileFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
 
         // Create an instance of ProfileRepository (you might need to pass necessary parameters)
-        val profileRepository = ProfileRepository() // You need to provide a valid implementation
+        val profileRepository: ProfileRepository by lazy {
+            ProfileRepository(requireContext())
+        } // You need to provide a valid implementation
         val viewModelFactory = ProfileViewModelFactory(profileRepository)
         profileviewmodel = ViewModelProvider(this, viewModelFactory)[ProfileViewModel::class.java]
 
@@ -37,6 +39,6 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        profileviewmodel.loadProfile("1")
+        profileviewmodel.loadProfile()
     }
 }

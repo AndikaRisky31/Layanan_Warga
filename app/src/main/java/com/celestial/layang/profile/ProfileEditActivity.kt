@@ -1,8 +1,8 @@
 package com.celestial.layang.profile
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.celestial.layang.R
@@ -16,32 +16,37 @@ class ProfileEditActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // Menginisialisasi Data Binding
         binding = DataBindingUtil.setContentView(this, R.layout.activity_profile_edit)
 
-        // Menginisialisasi ViewModel
-        viewModel = ViewModelProvider(this)[ProfileEditViewModel::class.java]
+        val profileRepository: ProfileRepository by lazy {
+            ProfileRepository(this)
+        }
 
-        // Mendapatkan ID pengguna dari sumber daya yang sesuai (misalnya, intent, shared preferences, dll.)
-        val userId = "user123" // Gantilah dengan cara Anda mendapatkan ID pengguna
+        val viewModelFactory = ProfileEditViewModelFactory(profileRepository)
 
-        // Menghubungkan ViewModel dengan layout menggunakan Data Binding
+        viewModel = ViewModelProvider(this, viewModelFactory)[ProfileEditViewModel::class.java]
+
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
-
-        // Memuat data profil dari repository menggunakan ViewModel
-        viewModel.fetchProfileData(userId)
-
-        // Menangani tombol simpan
+        viewModel.loadProfile()
+        val data = profileRepository.getProfile()
         binding.saveButton.setOnClickListener {
-            // Memanggil fungsi saveProfileData di ViewModel
-            viewModel.saveProfileData()
-
+            viewModel.saveProfile(
+                ProfileModel(
+                    id = data.id,
+                    Nama = binding.inUsername.text.toString(),
+                    Nomor = binding.inNomor.text.toString(),
+                    Email = binding.inEmail.text.toString(),
+                    Alamat = binding.inAlamat.text.toString(),
+                    pangkat = "Warga",
+                    tempatLahir = data.tempatLahir,
+                    TanggalLahir = data.TanggalLahir
+                    )
+            )
             navigateBackToProfileFragment()
-            // Lakukan sesuatu setelah data disimpan, seperti menavigasi kembali atau menampilkan pesan sukses
         }
     }
+
     // Di dalam EditProfileActivity setelah menyimpan data
     private fun navigateBackToProfileFragment() {
         val intent = Intent(this, MenuActivity::class.java)
@@ -49,5 +54,4 @@ class ProfileEditActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
-
 }

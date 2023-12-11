@@ -1,38 +1,62 @@
 package com.celestial.layang.profile
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
-import androidx.databinding.ObservableField
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
+import com.celestial.layang.api.ApiClient
+import com.celestial.layang.api.ApiService
+import com.celestial.layang.model.updateResponse
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.time.LocalDate
 
-class ProfileEditViewModel : ViewModel() {
+class ProfileEditViewModel(private val profileRepository: ProfileRepository) : ViewModel() {
 
-    private val profileRepository = ProfileRepository()
-    private lateinit var profileData:ProfileModel
+    private lateinit var apiService: ApiService
+    private val _profile = MutableLiveData<ProfileModel>()
+    val profile: LiveData<ProfileModel> get() = _profile
 
-    val profile = ObservableField<ProfileModel>()
-
-    // Fungsi untuk mengambil data profil dari repository
-    fun fetchProfileData(userId: String) {
-        profileData = profileRepository.getProfile(userId)
-
-        profile.set(profileData)
+    fun loadProfile() {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val result = profileRepository.getProfile()
+                withContext(Dispatchers.Main) {
+                    _profile.value = result
+                }
+            } catch (e: Exception) {
+                // Handle exception (jika diperlukan)
+            }
+        }
     }
 
-    // Fungsi untuk menyimpan data
-    fun saveProfileData() {
-        val newData = ProfileModel(
-            id = profile.get()?.id ?: 0, // Sesuaikan dengan struktur ProfileModel
-            Nama = profile.get()?.Nama ?: "",
-            Nomor = profile.get()?.Nomor ?: "",
-            Email = profile.get()?.Email ?: "",
-            Alamat = profile.get()?.Alamat ?: "",
-            pangkat = profile.get()?.pangkat ?: "",
-            tempatLahir = profile.get()?.tempatLahir ?: "",
-            TanggalLahir = profileData.TanggalLahir
-        )
-        saveProfile(newData)
+
+    fun saveProfile(profileData: ProfileModel) {
+        apiService = ApiClient.apiService
+        val call: Call<updateResponse> = apiService.updateUser(profileData)
+
+        // Enqueue the network request asynchronously
+        call.enqueue(object : Callback<updateResponse> {
+            override fun onResponse(call: Call<updateResponse>, response: Response<updateResponse>) {
+                if (response.isSuccessful) {
+                    Log.e("Update profileee", "Update successful - ${response.message()}")
+                } else {
+                    Log.e("Update profileee", "Update unsuccessful - ${response.code()}")
+                    // Handle unsuccessful response
+                    // You can log the error or perform appropriate actions
+                }
+            }
+
+            override fun onFailure(call: Call<updateResponse>, t: Throwable) {
+                Log.e("Update Profileee", "Failure: ${t.message}")
+                // Handle failure appropriately, e.g., retrying the request or showing an error message
+            }
+        })
     }
 
-    private fun saveProfile(profileData: ProfileModel) {
-        // TODO: menambahkan metode kemana data profile baru disimpan
-    }
 }

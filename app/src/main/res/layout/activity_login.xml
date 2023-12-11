@@ -50,6 +50,7 @@
         android:drawableLeft="@drawable/ic_people"
         android:drawableRight="@drawable/ic_tick"
         android:hint="Username"
+        android:text="andika"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text1" />
@@ -60,6 +61,7 @@
         android:drawableLeft="@drawable/ic_password"
         android:drawableRight="@drawable/ic_tick"
         android:hint="Password"
+        android:text="andika"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/inputUsername"/>

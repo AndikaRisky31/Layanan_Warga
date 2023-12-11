@@ -79,6 +79,7 @@
                 android:textColor="@color/black"
                 android:text="Nama"/>
             <EditText
+                android:id="@+id/inUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
@@ -106,6 +107,7 @@
                 android:textColor="@color/black"
                 android:text="Email"/>
             <EditText
+                android:id="@+id/inEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
@@ -133,6 +135,7 @@
                 android:textColor="@color/black"
                 android:text="No Telepon"/>
             <EditText
+                android:id="@+id/inNomor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
@@ -160,6 +163,7 @@
                 android:textColor="@color/black"
                 android:text="Alamat Lengkap"/>
             <EditText
+                android:id="@+id/inAlamat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
