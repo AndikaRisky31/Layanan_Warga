@@ -11,12 +11,12 @@ import androidx.lifecycle.viewModelScope
 import com.celestial.layang.R
 import com.celestial.layang.model.UserData
 import com.celestial.layang.profileedit.ProfileEditActivity
-import com.celestial.layang.repository.ProfileRepository
+import com.celestial.layang.repository.UserDataRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class ProfileViewModel(private val repository: ProfileRepository) : ViewModel() {
+class ProfileViewModel(private val repository: UserDataRepository) : ViewModel() {
 
     private val _profile = MutableLiveData<UserData>()
     val profile: LiveData<UserData>

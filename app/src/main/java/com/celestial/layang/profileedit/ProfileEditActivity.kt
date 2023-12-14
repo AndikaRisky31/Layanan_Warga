@@ -11,7 +11,7 @@ import com.celestial.layang.R
 import com.celestial.layang.databinding.ActivityProfileEditBinding
 import com.celestial.layang.home.MenuActivity
 import com.celestial.layang.model.UserData
-import com.celestial.layang.repository.ProfileRepository
+import com.celestial.layang.repository.UserDataRepository
 import kotlinx.coroutines.launch
 
 class ProfileEditActivity : AppCompatActivity() {
@@ -23,11 +23,11 @@ class ProfileEditActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_profile_edit)
 
-        val profileRepository: ProfileRepository by lazy {
-            ProfileRepository(this)
+        val userDataRepository: UserDataRepository by lazy {
+            UserDataRepository(this)
         }
 
-        val viewModelFactory = ProfileEditViewModelFactory(profileRepository)
+        val viewModelFactory = ProfileEditViewModelFactory(userDataRepository)
 
         viewModel = ViewModelProvider(this, viewModelFactory)[ProfileEditViewModel::class.java]
 
@@ -37,7 +37,7 @@ class ProfileEditActivity : AppCompatActivity() {
 
         viewModel.viewModelScope.launch {
             try {
-                val data = profileRepository.userData()
+                val data = userDataRepository.userData()
 
                 binding.saveButton.setOnClickListener {
                     viewModel.saveUserData(

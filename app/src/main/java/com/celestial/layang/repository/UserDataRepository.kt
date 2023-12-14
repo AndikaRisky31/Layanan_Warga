@@ -11,7 +11,7 @@ import kotlinx.coroutines.withContext
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-class ProfileRepository(context: Context) {
+class UserDataRepository(context: Context) {
     private var apiService: ApiService = ApiClient.apiService
     private val userPreferences: UserPreferences by lazy {
         UserPreferences(context.getSharedPreferences("User_Data", Context.MODE_PRIVATE))

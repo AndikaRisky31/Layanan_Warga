@@ -9,7 +9,7 @@ import com.celestial.layang.api.ApiClient
 import com.celestial.layang.api.ApiService
 import com.celestial.layang.model.UpdateResponse
 import com.celestial.layang.model.UserData
-import com.celestial.layang.repository.ProfileRepository
+import com.celestial.layang.repository.UserDataRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -17,7 +17,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ProfileEditViewModel(private val profileRepository: ProfileRepository) : ViewModel() {
+class ProfileEditViewModel(private val userDataRepository: UserDataRepository) : ViewModel() {
 
     private lateinit var apiService: ApiService
     private val _profile = MutableLiveData<UserData>()
@@ -26,7 +26,7 @@ class ProfileEditViewModel(private val profileRepository: ProfileRepository) : V
     fun loadProfile() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val result = profileRepository.userData()
+                val result = userDataRepository.userData()
                 withContext(Dispatchers.Main) {
                     _profile.value = result
                 }
@@ -45,7 +45,7 @@ class ProfileEditViewModel(private val profileRepository: ProfileRepository) : V
         call.enqueue(object : Callback<UpdateResponse> {
             override fun onResponse(call: Call<UpdateResponse>, response: Response<UpdateResponse>) {
                 if (response.isSuccessful) {
-                    Log.e("Update profileee", "Update successful - ${response.message()}")
+                    Log.e("Update profileee", "Update successful - ${response.body()?.data.toString()}")
                 } else {
                     Log.e("Update profileee", "Update unsuccessful - ${response.code()}")
                     // Handle unsuccessful response

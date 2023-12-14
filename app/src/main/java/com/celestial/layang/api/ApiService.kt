@@ -14,22 +14,22 @@ import retrofit2.http.POST
 import retrofit2.http.PUT
 
 interface ApiService {
-/*
+    /*
     // Menggunakan @POST untuk menandai metode POST
     @POST("users/create")
     fun addUser(@Body user: User): Call<ResponseObject>
 */
-    @POST("user/login")
+    @POST("auth/login")
     fun login(@Body body: LoginRequest): Call<LoginResponse>
 
 
+    @PUT("users/update")
+    fun updateUser(@Body body: UserData): Call<UpdateResponse>
 
-    @PUT("user/update")
-    fun updateUser(@Body body:UserData):Call<UpdateResponse>
+    @POST("users/data")
+    suspend fun getProfileData(@Body request: UserRequest): Response<UpdateResponse>
 
-    @POST("agendakelurahan")
+    @POST("agenda/kelurahan_id")
     suspend fun getAgendaList(@Body request: AgendaRequest): Response<AgendaResponse>
 
-    @POST("user/data")
-    suspend fun getProfileData(@Body request: UserRequest):Response<UpdateResponse>
 }

@@ -14,22 +14,14 @@ class JanjiTemuActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityJanjiTemuBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         janjitemuViewModel = ViewModelProvider(this)[JanjiTemuViewModel::class.java]
-
-
         val kontakList = janjitemuViewModel.getFasilitasList()
-
-
         val recyclerView = binding.listkontak
-
-
         val adapter = JanjiTemuAdapter(this, kontakList) { kontak ->
             goToProfileActivity(kontak)
         }
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
-
         binding.buttonBack.setOnClickListener{
             onBackPressedDispatcher.onBackPressed()
         }

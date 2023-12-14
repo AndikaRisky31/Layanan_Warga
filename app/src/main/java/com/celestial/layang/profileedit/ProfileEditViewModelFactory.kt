@@ -2,9 +2,9 @@ package com.celestial.layang.profileedit
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.celestial.layang.repository.ProfileRepository
+import com.celestial.layang.repository.UserDataRepository
 
-class ProfileEditViewModelFactory(private val repository: ProfileRepository) : ViewModelProvider.Factory {
+class ProfileEditViewModelFactory(private val repository: UserDataRepository) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
