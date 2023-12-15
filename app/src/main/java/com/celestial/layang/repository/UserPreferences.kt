@@ -21,6 +21,7 @@ class UserPreferences(private val preferences: SharedPreferences) {
             putString(ALAMAT_KEY, userData.alamat)
             putString(TANGGAL_LAHIR_KEY,userData.TanggalLahir)
             putString(TEMPAT_LAHIR_KEY,userData.tempatLahir)
+            putString(IMAGEURL_KEY,userData.imageURL)
             apply()
         }
     }
@@ -36,6 +37,7 @@ class UserPreferences(private val preferences: SharedPreferences) {
             preferences.getString(ALAMAT_KEY,"")?: "",
             preferences.getString(TEMPAT_LAHIR_KEY,"")?: "",
             preferences.getString(TANGGAL_LAHIR_KEY,"")?: "",
+            preferences.getString(IMAGEURL_KEY,"")?: "",
         )
     }
 
@@ -50,5 +52,6 @@ class UserPreferences(private val preferences: SharedPreferences) {
         private const val ALAMAT_KEY = "alamat"
         private const val TANGGAL_LAHIR_KEY = "tanggalLahir"
         private const val TEMPAT_LAHIR_KEY = "TempatLahir"
+        private const val IMAGEURL_KEY = "imageURL"
     }
 }

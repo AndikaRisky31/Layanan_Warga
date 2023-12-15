@@ -30,4 +30,12 @@ data class AgendaResponse(
     val message: String,
     val data:List<AgendaItem>
 )
+data class ArticleRequest(
+    val page:Int,
+    val pageSize:Int
+)
 
+data class ArticleResponse(
+    val message: String,
+    val data:List<ArticleModel>
+)

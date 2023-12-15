@@ -49,7 +49,8 @@ class ProfileEditActivity : AppCompatActivity() {
                             email = binding.inEmail.text.toString(),
                             alamat = binding.inAlamat.text.toString(),
                             tempatLahir = data.tempatLahir,
-                            TanggalLahir = data.TanggalLahir
+                            TanggalLahir = data.TanggalLahir,
+                            imageURL = data.imageURL
                         )
                     )
                     navigateBackToProfileFragment()

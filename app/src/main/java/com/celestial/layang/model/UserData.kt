@@ -8,7 +8,8 @@ data class UserData(
     val email:String,
     val alamat:String,
     val tempatLahir: String,
-    val TanggalLahir: String
+    val TanggalLahir: String,
+    val imageURL: String
 )
 
 data class AgendaItem(
@@ -18,4 +19,11 @@ data class AgendaItem(
     val imageURL:String,
     val tanggal:String,
     val tempat:String
+)
+data class ArticleModel(
+    val artikel_id:Int,
+    val judul:String,
+    val deskripsi:String,
+    val tanggal:String,
+    val ImageURL:String
 )

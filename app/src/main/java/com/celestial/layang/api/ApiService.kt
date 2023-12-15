@@ -2,6 +2,8 @@ package com.celestial.layang.api
 
 import com.celestial.layang.model.AgendaRequest
 import com.celestial.layang.model.AgendaResponse
+import com.celestial.layang.model.ArticleRequest
+import com.celestial.layang.model.ArticleResponse
 import com.celestial.layang.model.LoginRequest
 import com.celestial.layang.model.LoginResponse
 import com.celestial.layang.model.UpdateResponse
@@ -22,7 +24,6 @@ interface ApiService {
     @POST("auth/login")
     fun login(@Body body: LoginRequest): Call<LoginResponse>
 
-
     @PUT("users/update")
     fun updateUser(@Body body: UserData): Call<UpdateResponse>
 
@@ -31,5 +32,10 @@ interface ApiService {
 
     @POST("agenda/kelurahan_id")
     suspend fun getAgendaList(@Body request: AgendaRequest): Response<AgendaResponse>
+
+    @POST("articles/latest")
+    suspend fun getLatestArticles(@Body size:Int): Response<ArticleResponse>
+    @POST("articles/page")
+    suspend fun getArticlesByPage(@Body request: ArticleRequest): Response<ArticleResponse>
 
 }
