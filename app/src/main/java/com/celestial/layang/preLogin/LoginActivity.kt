@@ -12,6 +12,7 @@ import com.celestial.layang.databinding.ActivityLoginBinding
 import com.celestial.layang.home.MenuActivity
 import com.celestial.layang.model.LoginRequest
 import com.celestial.layang.model.LoginResponse
+import com.celestial.layang.register.RegisterActivity
 import com.celestial.layang.repository.UserPreferences
 import retrofit2.Call
 import retrofit2.Callback

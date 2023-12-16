@@ -7,9 +7,8 @@
     <data>
         <variable
             name="viewModel"
-            type="com.celestial.layang.preLogin.RegisterActivity" />
+            type="com.celestial.layang.register.RegisterActivity" />
     </data>
-    
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -98,7 +97,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/buttonMendaftar">
-
         <TextView
             android:textColor="@color/black"
             android:alpha="0.7"
@@ -113,8 +111,5 @@
             android:text="Masuk"
             android:textStyle="bold"/>
     </LinearLayout>
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

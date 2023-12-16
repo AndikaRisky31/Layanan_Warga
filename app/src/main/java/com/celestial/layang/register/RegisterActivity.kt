@@ -1,16 +1,14 @@
 // YourActivity.kt
-package com.celestial.layang.preLogin
+package com.celestial.layang.register
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.celestial.layang.api.ApiClient
 import com.celestial.layang.api.ApiService
+import com.celestial.layang.databinding.ActivityRegister2Binding
 import com.celestial.layang.databinding.ActivityRegisterBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.celestial.layang.preLogin.LoginActivity
 
 
 class RegisterActivity : AppCompatActivity() {
@@ -25,11 +23,12 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.linklogin.setOnClickListener{
-            intent = Intent(this,LoginActivity::class.java)
+            intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
         binding.buttonMendaftar.setOnClickListener{
-            addUser()
+            val intent = Intent(this,Register2Activity::class.java)
+            startActivity(intent)
         }
     }
     private fun addUser() {
