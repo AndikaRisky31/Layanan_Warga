@@ -5,7 +5,9 @@ import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.celestial.layang.databinding.ActivityAgendaBinding
+import com.celestial.layang.model.UserData
 import com.celestial.layang.repository.AgendaRepository
+import com.celestial.layang.repository.UserPreferences
 
 class AgendaActivity : AppCompatActivity() {
 
@@ -16,36 +18,31 @@ class AgendaActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityAgendaBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         repository = AgendaRepository()
         agendaViewModel = ViewModelProvider(this, AgendaViewModelFactory(repository))[AgendaViewModel::class.java]
 
-        // Inisialisasi RecyclerView dengan ID pada layout
         val recyclerView = binding.listAgenda
-
-        // Inisialisasi adapter
         agendaAdapter = AgendaAdapter()
 
-        // Mengatur RecyclerView dengan layout manager dan adapter
         recyclerView.apply {
             layoutManager = LinearLayoutManager(this@AgendaActivity)
             adapter = agendaAdapter
         }
-
-        // Observasi LiveData dari ViewModel
         agendaViewModel.agendaList.observe(this) { agendaList ->
-            // Pembaruan data RecyclerView ketika LiveData berubah
             agendaAdapter.submitList(agendaList)
         }
-
-        // Panggil fungsi untuk mengambil data dari repository berdasarkan id_kelurahan
-        agendaViewModel.getAgendaByKelurahanId("1")
+        agendaViewModel.getAgendaByKelurahanId(getDataPreferences().kelurahan_id.toString())
 
         binding.buttonBack.setOnClickListener{
             onBackPressedDispatcher.onBackPressed()
         }
+    }
+    private fun getDataPreferences():UserData{
+        val userPreferences: UserPreferences by lazy {
+            UserPreferences(getSharedPreferences("User_Data", MODE_PRIVATE))
+        }
+        return userPreferences.getUserData()
     }
 }

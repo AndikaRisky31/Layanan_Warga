@@ -61,7 +61,6 @@ class LoginActivity : AppCompatActivity() {
                     val loginResponse = response.body()
                     // Save user data using userPreferences instance
                     userPreferences.saveUserData(loginResponse!!.data)
-                    Log.e("Data dari user",userPreferences.getUserData().toString())
                     intent = Intent(this@LoginActivity, MenuActivity::class.java)
                     startActivity(intent)
                 } else {

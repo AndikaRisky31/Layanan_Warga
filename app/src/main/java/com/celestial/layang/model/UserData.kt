@@ -9,7 +9,7 @@ data class UserData(
     val alamat:String,
     val tempatLahir: String,
     val TanggalLahir: String,
-    val imageURL: String
+    val imageURL: String?
 )
 
 data class AgendaItem(

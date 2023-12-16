@@ -1,9 +1,11 @@
 package com.celestial.layang.api
 
-import com.celestial.layang.model.AgendaRequest
+import com.celestial.layang.model.AdminResponse
+import com.celestial.layang.model.KelurahanIdRequest
 import com.celestial.layang.model.AgendaResponse
 import com.celestial.layang.model.ArticleRequest
 import com.celestial.layang.model.ArticleResponse
+import com.celestial.layang.model.IdRequest
 import com.celestial.layang.model.LoginRequest
 import com.celestial.layang.model.LoginResponse
 import com.celestial.layang.model.UpdateResponse
@@ -31,11 +33,17 @@ interface ApiService {
     suspend fun getProfileData(@Body request: UserRequest): Response<UpdateResponse>
 
     @POST("agenda/kelurahan_id")
-    suspend fun getAgendaList(@Body request: AgendaRequest): Response<AgendaResponse>
+    suspend fun getAgendaList(@Body request: KelurahanIdRequest): Response<AgendaResponse>
 
     @POST("articles/latest")
     suspend fun getLatestArticles(@Body size:Int): Response<ArticleResponse>
     @POST("articles/page")
     suspend fun getArticlesByPage(@Body request: ArticleRequest): Response<ArticleResponse>
+
+    @POST("admin/kelurahan_id")
+    suspend fun getAdmin(@Body request: KelurahanIdRequest):Response<AdminResponse>
+
+    @POST("admin/id")
+    suspend fun getAdminById(@Body request: IdRequest):Response<AdminResponse>
 
 }

@@ -1,5 +1,7 @@
 package com.celestial.layang.model
 
+import com.celestial.layang.janjiTemu.KontakModel
+
 data class RequestResponse(
     val data:String
 )
@@ -22,7 +24,7 @@ data class UserRequest(
     val user_id: Int
 )
 //AGENDA
-data class AgendaRequest(
+data class KelurahanIdRequest(
     val kelurahan_id: String
     )
 
@@ -39,3 +41,12 @@ data class ArticleResponse(
     val message: String,
     val data:List<ArticleModel>
 )
+data class AdminResponse(
+    val message: String,
+    val data: List<KontakModel>
+)
+data class IdRequest(
+    val id:Int
+)
+
+class ApiException(message: String) : Exception(message)
