@@ -44,13 +44,13 @@ class ProfileEditActivity : AppCompatActivity() {
                         UserData(
                             user_id = data.user_id,
                             kelurahan_id = data.kelurahan_id,
+                            password = data.password,
                             username = binding.inUsername.text.toString(),
                             nomor = binding.inNomor.text.toString(),
                             email = binding.inEmail.text.toString(),
                             alamat = binding.inAlamat.text.toString(),
-                            tempatLahir = data.tempatLahir,
-                            TanggalLahir = data.TanggalLahir,
-                            imageURL = data.imageURL
+                            kota = data.kota,
+                            imageURL = "ess"
                         )
                     )
                     navigateBackToProfileFragment()

@@ -157,14 +157,14 @@
                 android:fontFamily="@font/poppins_light"
                 android:textSize="13sp"
                 android:textColor="@color/black"
-                android:text="Tempat,Tanggal Lahir"/>
+                android:text="Kota"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
                 android:textSize="15sp"
                 android:textColor="@color/black"
-                android:text="@{viewModel.profile.tempatLahir+','+viewModel.profile.tanggalLahir}"/>
+                android:text="@{viewModel.profile.kota}"/>
         </LinearLayout>
         <LinearLayout
             android:id="@+id/boxalamat"

@@ -59,15 +59,6 @@
         app:layout_constraintTop_toBottomOf="@+id/text1" />
 
     <EditText
-        android:id="@+id/inputUsername"
-        style="@style/fieldText"
-        android:drawableLeft="@drawable/ic_people"
-        android:drawableRight="@drawable/ic_tick"
-        android:hint="Username"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputEmail" />
-    <EditText
         android:id="@+id/password"
         android:inputType="textPassword"
         style="@style/fieldText"
@@ -76,7 +67,17 @@
         android:hint="Password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/inputUsername"/>
+        app:layout_constraintTop_toBottomOf="@+id/inputEmail" />
+    <EditText
+        android:id="@+id/password2"
+        android:inputType="textPassword"
+        style="@style/fieldText"
+        android:drawableLeft="@drawable/ic_password"
+        android:drawableRight="@drawable/ic_tick"
+        android:hint="Confirm Password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/password"/>
 
     <Button
         android:id="@+id/buttonMendaftar"
@@ -84,11 +85,11 @@
         android:layout_width="286dp"
         android:layout_height="54dp"
         android:layout_marginTop="20dp"
-        android:text="Mendaftar"
+        android:text="Lanjut"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/password" />
+        app:layout_constraintTop_toBottomOf="@id/password2" />
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

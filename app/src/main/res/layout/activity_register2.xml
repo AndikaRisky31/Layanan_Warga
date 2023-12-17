@@ -1,42 +1,98 @@
 <!-- activity_register.xml -->
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/primary_color"
+    android:padding="10dp">
+
 
     <Spinner
         android:id="@+id/spinnerProvinsi"
-        android:layout_width="match_parent"
-        android:layout_height="32dp"
-        android:prompt="@string/prompt_provinsi" />
+        android:layout_width="330dp"
+        android:layout_height="48dp"
+        style="@style/SpinnerTheme"
+        android:prompt="@string/prompt_provinsi"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+       />
 
     <Spinner
         android:id="@+id/spinnerKabupaten"
-        android:layout_width="match_parent"
-        android:layout_height="32dp"
-        android:prompt="@string/prompt_kabupaten" />
+        android:layout_width="330dp"
+        android:layout_height="48dp"
+        style="@style/SpinnerTheme"
+        android:prompt="@string/prompt_kabupaten"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinnerProvinsi"/>
 
     <Spinner
         android:id="@+id/spinnerKecamatan"
-        android:layout_width="match_parent"
-        android:layout_height="32dp"
-        android:prompt="@string/prompt_kecamatan" />
+        android:layout_width="330dp"
+        android:layout_height="48dp"
+        style="@style/SpinnerTheme"
+        android:prompt="@string/prompt_kecamatan"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinnerKabupaten"/>
 
     <Spinner
         android:id="@+id/spinnerKelurahan"
-        android:layout_width="match_parent"
-        android:layout_height="32dp"
-        android:prompt="@string/prompt_kelurahan" />
+        android:layout_width="330dp"
+        android:layout_height="48dp"
+        style="@style/SpinnerTheme"
+        android:prompt="@string/prompt_kelurahan"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinnerKecamatan"/>
+    <EditText
+        android:id="@+id/inputUsername"
+        style="@style/fieldText"
+        android:drawableLeft="@drawable/ic_people"
+        android:drawableRight="@drawable/ic_tick"
+        android:hint="Username"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerKelurahan" />
+
+    <EditText
+        android:id="@+id/inputNomor"
+        android:drawablePadding="19dp"
+        style="@style/fieldText"
+        android:drawableLeft="@drawable/ic_email"
+        android:drawableRight="@drawable/ic_tick"
+        android:hint="No Hp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputUsername" />
+    <EditText
+        android:id="@+id/inputAlamat"
+        android:drawablePadding="19dp"
+        android:minHeight="48dp"
+        style="@style/fieldText"
+        android:drawableLeft="@drawable/ic_email"
+        android:drawableRight="@drawable/ic_tick"
+        android:hint="Alamat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputNomor" />
 
 
     <!-- Add other registration form fields as needed -->
 
     <Button
         android:id="@+id/btnRegister"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Register" />
+        style="@style/CustomButtonStyle"
+        android:layout_width="286dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="40dp"
+        android:text="Register"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,14 +1,15 @@
 package com.celestial.layang.model
 
+
 data class UserData(
     val user_id: Int,
     val kelurahan_id:Int,
     val username:String,
+    val password:String,
     val nomor:String,
     val email:String,
     val alamat:String,
-    val tempatLahir: String,
-    val TanggalLahir: String,
+    val kota: String,
     val imageURL: String?
 )
 

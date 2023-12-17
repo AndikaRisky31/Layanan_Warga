@@ -32,9 +32,9 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
     private fun addUser() {
-        val username = binding.inputUsername.toString()
-        val email = binding.inputEmail.toString()
-        val userPassword = binding.password.toString()
+//        val username = binding.inputUsername.toString()
+//        val email = binding.inputEmail.toString()
+//        val userPassword = binding.password.toString()
 /*
         // Membuat objek User
         val user = User(username = username, userpassword = userPassword, email = email)

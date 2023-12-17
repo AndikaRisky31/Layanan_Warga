@@ -23,7 +23,7 @@ class UserDataRepository(context: Context) {
 
         try {
             val response = withContext(Dispatchers.IO) {
-                apiService.getProfileData(UserRequest(data))
+                apiService.getProfileData(data.toString())
             }
 
             if (response.isSuccessful) {

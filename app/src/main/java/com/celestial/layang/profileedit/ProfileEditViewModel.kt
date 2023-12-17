@@ -38,8 +38,9 @@ class ProfileEditViewModel(private val userDataRepository: UserDataRepository) :
 
 
     fun saveUserData(userData: UserData) {
+        Log.e("data userData ",userData.toString())
         apiService = ApiClient.apiService
-        val call: Call<UpdateResponse> = apiService.updateUser(userData)
+        val call: Call<UpdateResponse> = apiService.updateUser(userData.user_id.toString(),userData)
 
         // Enqueue the network request asynchronously
         call.enqueue(object : Callback<UpdateResponse> {

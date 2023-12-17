@@ -9,11 +9,12 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
-import com.celestial.layang.api.DataKabupaten
-import com.celestial.layang.api.DataKecamatan
-import com.celestial.layang.api.DataKelurahan
-import com.celestial.layang.api.DataProvinsi
+import com.celestial.layang.R
 import com.celestial.layang.databinding.ActivityRegister2Binding
+import com.celestial.layang.model.DataKabupaten
+import com.celestial.layang.model.DataKecamatan
+import com.celestial.layang.model.DataKelurahan
+import com.celestial.layang.model.DataProvinsi
 import com.celestial.layang.repository.DaerahRepository
 import retrofit2.Call
 import retrofit2.Callback
@@ -21,7 +22,7 @@ import retrofit2.Response
 
 class Register2Activity : AppCompatActivity() {
     private lateinit var binding: ActivityRegister2Binding
-    private val daerahRepository = DaerahRepository.getInstance()
+    private val daerahRepository = DaerahRepository()
     private var isSpinnerProvinsiTouched = false
     private var isSpinnerKabupatenTouched = false
     private var isSpinnerKecamatanTouched = false
@@ -47,8 +48,8 @@ class Register2Activity : AppCompatActivity() {
         setupSpinnerKelurahanListener()
     }
     private fun setupSpinner(spinner: Spinner, data: List<String>) {
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, data)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        val adapter = ArrayAdapter(this, R.layout.spinner, data)
+        adapter.setDropDownViewResource(R.layout.item_spinner)
         spinner.adapter = adapter
     }
 
@@ -61,8 +62,8 @@ class Register2Activity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     provinces = response.body()!!
                     provinces.let {
-                        // Memasukkan data provinsi ke dalam Spinner Provinsi
-                        val provinceNames = it.map { provinsi -> provinsi.name }
+                        val provinceNames = mutableListOf("Pilih Provinsi")
+                        provinceNames.addAll(provinces.map { provinsi -> provinsi.name })
                         setupSpinner(binding.spinnerProvinsi, provinceNames)
                     }
                 } else {
@@ -86,7 +87,8 @@ class Register2Activity : AppCompatActivity() {
                     regencies = response.body()!!
                     regencies.let {
                         // Memasukkan data kabupaten ke dalam Spinner Kabupaten
-                        val regencyNames = it.map { kabupaten -> kabupaten.name }
+                        val regencyNames = mutableListOf("Pilih Kota Kabupaten")
+                        regencyNames.addAll(regencies.map { kabupaten -> kabupaten.name })
                         setupSpinner(binding.spinnerKabupaten, regencyNames)
                     }
                 } else {
@@ -109,7 +111,9 @@ class Register2Activity : AppCompatActivity() {
                     districts = response.body()!!
                     districts.let {
                         // Memasukkan data kecamatan ke dalam Spinner Kecamatan
-                        val districtNames = it.map { kecamatan -> kecamatan.name }
+                        val districtNames = mutableListOf("Pilih Kecamatan")
+                        districtNames.addAll(districts.map { kecamatan -> kecamatan.name })
+
                         setupSpinner(binding.spinnerKecamatan, districtNames)
                     }
                 } else {
@@ -133,11 +137,12 @@ class Register2Activity : AppCompatActivity() {
                     villages = response.body()!!
                     villages.let {
                         // Memasukkan data kelurahan ke dalam Spinner Kelurahan
-                        val villageNames = it.map { kelurahan -> kelurahan.name }
+                        val villageNames = mutableListOf("Pilih Kelurahan")
+                        villageNames.addAll(villages.map { kelurahan -> kelurahan.name })
                         setupSpinner(binding.spinnerKelurahan, villageNames)
                     }
                 } else {
-                    // Handle kegagalan response
+                    Log.e("kellll","konyokkk")
                 }
             }
 
@@ -161,7 +166,7 @@ class Register2Activity : AppCompatActivity() {
         binding.spinnerProvinsi.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if (isSpinnerProvinsiTouched) {
-                    selectedProvince = provinces[position].id
+                    selectedProvince = provinces[position-1].id
                     getRegencies(selectedProvince)
                 }
             }
@@ -184,7 +189,7 @@ class Register2Activity : AppCompatActivity() {
         binding.spinnerKabupaten.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if (isSpinnerKabupatenTouched) {
-                    selectedRegency = regencies[position].id
+                    selectedRegency = regencies[position-1].id
                     getDistricts(selectedRegency)
                 }
             }
@@ -206,7 +211,7 @@ class Register2Activity : AppCompatActivity() {
         binding.spinnerKecamatan.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if (isSpinnerKecamatanTouched) {
-                    selectedDistrict = districts[position].id
+                    selectedDistrict = districts[position-1].id
                     getVillages(selectedDistrict)
                 }
             }
@@ -229,7 +234,7 @@ class Register2Activity : AppCompatActivity() {
         binding.spinnerKelurahan.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if (isSpinnerKelurahanTouched) {
-                    selectedVillage = villages[position]
+                    selectedVillage = villages[position-1]
                     Log.e("data yang diambil",selectedVillage.toString())
                 }
             }

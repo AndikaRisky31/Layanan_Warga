@@ -17,10 +17,10 @@ class UserPreferences(private val preferences: SharedPreferences) {
             putInt(KELURAHAN_ID_KEY, userData.kelurahan_id)
             putString(USERNAME_KEY, userData.username)
             putString(NOMOR_KEY,userData.nomor)
+            putString(PASSWORD_KEY,userData.password)
             putString(EMAIL_KEY, userData.email)
             putString(ALAMAT_KEY, userData.alamat)
-            putString(TANGGAL_LAHIR_KEY,userData.TanggalLahir)
-            putString(TEMPAT_LAHIR_KEY,userData.tempatLahir)
+            putString(KOTA_KEY,userData.kota)
             putString(IMAGEURL_KEY,userData.imageURL)
             apply()
         }
@@ -32,11 +32,11 @@ class UserPreferences(private val preferences: SharedPreferences) {
             preferences.getInt(USER_ID_KEY, 0),
             preferences.getInt(KELURAHAN_ID_KEY, 0),
             preferences.getString(USERNAME_KEY, "") ?: "",
+            preferences.getString(PASSWORD_KEY, "") ?: "",
             preferences.getString(NOMOR_KEY, "") ?: "",
             preferences.getString(EMAIL_KEY, "") ?: "",
             preferences.getString(ALAMAT_KEY,"")?: "",
-            preferences.getString(TEMPAT_LAHIR_KEY,"")?: "",
-            preferences.getString(TANGGAL_LAHIR_KEY,"")?: "",
+            preferences.getString(KOTA_KEY,"")?: "",
             preferences.getString(IMAGEURL_KEY,"")?: "",
         )
     }
@@ -50,8 +50,8 @@ class UserPreferences(private val preferences: SharedPreferences) {
         private const val NOMOR_KEY = "nomor"
         private const val EMAIL_KEY = "email"
         private const val ALAMAT_KEY = "alamat"
-        private const val TANGGAL_LAHIR_KEY = "tanggalLahir"
-        private const val TEMPAT_LAHIR_KEY = "TempatLahir"
+        private const val KOTA_KEY = "TempatLahir"
         private const val IMAGEURL_KEY = "imageURL"
+        private const val PASSWORD_KEY = "password"
     }
 }
