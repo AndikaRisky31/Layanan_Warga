@@ -5,11 +5,11 @@ import androidx.lifecycle.ViewModelProvider
 import com.celestial.layang.api.ApiService
 import com.celestial.layang.repository.LaporRepository
 
-class LaporViewModelFactory(private val laporRepository: LaporRepository, private val apiService: ApiService) : ViewModelProvider.Factory {
+class LaporViewModelFactory(private val laporRepository: LaporRepository) : ViewModelProvider.Factory {
     fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(LaporViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return LaporViewModel(laporRepository, apiService) as T
+            return LaporViewModel(laporRepository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
