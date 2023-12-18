@@ -23,7 +23,7 @@
             android:exported="false"
             android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity
-            android:name=".layanan.pengajuan.PengajuanBerkasActivity"
+            android:name=".layanan.pengajuan.pengajuanidentity.PengajuanBerkasActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
@@ -63,7 +63,7 @@
             android:exported="false"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".layanan.pengajuan.PengajuanIdentityActivity"
+            android:name=".layanan.pengajuan.pengajuanidentity.PengajuanIdentityActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity

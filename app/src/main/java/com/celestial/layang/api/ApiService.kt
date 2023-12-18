@@ -10,8 +10,13 @@ import com.celestial.layang.model.DataKecamatan
 import com.celestial.layang.model.DataKelurahan
 import com.celestial.layang.model.DataProvinsi
 import com.celestial.layang.model.IdRequest
+import com.celestial.layang.model.LaporanData
+import com.celestial.layang.model.LaporanRequest
+import com.celestial.layang.model.LaporanResponse
 import com.celestial.layang.model.LoginRequest
 import com.celestial.layang.model.LoginResponse
+import com.celestial.layang.model.PengajuanRequest
+import com.celestial.layang.model.PengajuanResponse
 import com.celestial.layang.model.RegisterResponse
 import com.celestial.layang.model.UpdateResponse
 import com.celestial.layang.model.UserData
@@ -64,4 +69,9 @@ interface ApiService {
     @GET("daerah/kelurahan/{districtId}")
     fun getVillages(@Path("districtId") districtId: String): Call<List<DataKelurahan>>
 
+    @POST("pengajuan")
+    suspend fun savePengajuan(@Body request: PengajuanRequest): Response<PengajuanResponse>
+
+    @POST("laporan")
+    suspend fun saveLaporan(@Body request: LaporanRequest): Response<LaporanResponse>
 }

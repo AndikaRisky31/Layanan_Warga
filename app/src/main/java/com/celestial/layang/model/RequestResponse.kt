@@ -54,4 +54,22 @@ data class RegisterResponse(
     val data:UserData
 )
 
+data class PengajuanRequest(
+    val pengajuan_id: PengajuanData
+)
+data class PengajuanResponse(
+    val success: Boolean,
+    val message: String,
+    val data: PengajuanData
+)
+data class LaporanRequest(
+    val laporan_id: LaporanData
+)
+data class LaporanResponse(
+    val success: Boolean,
+    val message: String,
+    val data: LaporanData
+)
+
+
 class ApiException(message: String) : Exception(message)
