@@ -13,8 +13,8 @@ class UserPreferences(private val preferences: SharedPreferences) {
     // Save user data
     fun saveUserData(userData: UserData) {
         with(preferences.edit()) {
-            putInt(USER_ID_KEY, userData.user_id)
-            putInt(KELURAHAN_ID_KEY, userData.kelurahan_id)
+            userData.user_id?.let { putInt(USER_ID_KEY, it) }
+            userData.kelurahan_id?.let { putInt(KELURAHAN_ID_KEY, it) }
             putString(USERNAME_KEY, userData.username)
             putString(NOMOR_KEY,userData.nomor)
             putString(PASSWORD_KEY,userData.password)

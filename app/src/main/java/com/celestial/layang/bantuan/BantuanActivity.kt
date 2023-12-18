@@ -12,7 +12,7 @@ class BantuanActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityChatbotBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.webviewChatbot.loadUrl("https://cloud-object-storage-cos-standard-10m.s3.jp-tok.cloud-object-storage.appdomain.cloud/bot-assistant-mobile.html")
+        binding.webviewChatbot.loadUrl("https://web-chat.global.assistant.watson.appdomain.cloud/preview.html?backgroundImageURL=https%3A%2F%2Fus-south.assistant.watson.cloud.ibm.com%2Fpublic%2Fimages%2Fupx-61dc1dfb-facc-4f97-b5a7-60351d14b89d%3A%3Ad2210c3f-4b2a-4205-92cb-2a09e5fc1d1f&integrationID=22db7b3a-aa91-444a-940f-d04acb08e3db&region=us-south&serviceInstanceID=61dc1dfb-facc-4f97-b5a7-60351d14b89d")
         binding.webviewChatbot.settings.javaScriptEnabled = true
     }
 }

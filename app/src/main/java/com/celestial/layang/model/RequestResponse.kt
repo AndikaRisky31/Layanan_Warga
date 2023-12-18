@@ -7,7 +7,7 @@ data class RequestResponse(
 )
 //LOGIN
 data class LoginRequest(
-    val username: String,
+    val email: String,
     val password: String,
 )
 data class LoginResponse(
@@ -47,6 +47,11 @@ data class AdminResponse(
 )
 data class IdRequest(
     val id:Int
+)
+data class RegisterResponse(
+    val success : Boolean,
+    val message: String,
+    val data:UserData
 )
 
 class ApiException(message: String) : Exception(message)
