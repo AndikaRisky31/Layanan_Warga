@@ -54,8 +54,8 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun loginUser(username: String, password: String) {
-        val loginRequest = LoginRequest(username, password)
+    private fun loginUser(email: String, password: String) {
+        val loginRequest = LoginRequest(email, password)
 
         val call = apiService.login(loginRequest)
         call.enqueue(object : Callback<LoginResponse> {
@@ -67,7 +67,7 @@ class LoginActivity : AppCompatActivity() {
                     intent = Intent(this@LoginActivity, MenuActivity::class.java)
                     startActivity(intent)
                 } else {
-                    Toast.makeText(this@LoginActivity, "$username dan $password", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@LoginActivity, "$email dan $password", Toast.LENGTH_SHORT).show()
                 }
             }
 

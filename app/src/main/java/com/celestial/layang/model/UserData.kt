@@ -1,17 +1,20 @@
 package com.celestial.layang.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class UserData(
-    val user_id: Int,
-    val kelurahan_id:Int,
-    val username:String,
-    val password:String,
-    val nomor:String,
-    val email:String,
-    val alamat:String,
-    val kota: String,
-    val imageURL: String?
-)
+    var user_id: Int?,
+    var kelurahan_id:Int?,
+    var username:String?,
+    var password:String?,
+    var nomor:String?,
+    var email:String?,
+    var alamat:String?,
+    var kota: String?,
+    var imageURL: String?
+):Parcelable
 
 data class AgendaItem(
     val agenda_id:Int,

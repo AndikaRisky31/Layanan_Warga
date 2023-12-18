@@ -17,6 +17,7 @@ import com.celestial.layang.model.LoginRequest
 import com.celestial.layang.model.LoginResponse
 import com.celestial.layang.model.PengajuanRequest
 import com.celestial.layang.model.PengajuanResponse
+import com.celestial.layang.model.RegisterResponse
 import com.celestial.layang.model.UpdateResponse
 import com.celestial.layang.model.UserData
 import com.celestial.layang.model.UserRequest
@@ -30,11 +31,9 @@ import retrofit2.http.PUT
 import retrofit2.http.Path
 
 interface ApiService {
-    /*
-    // Menggunakan @POST untuk menandai metode POST
+
     @POST("users/create")
-    fun addUser(@Body user: User): Call<ResponseObject>
-*/
+    fun addUser(@Body user: UserData): Call<RegisterResponse>
     @POST("auth/login")
     fun login(@Body body: LoginRequest): Call<LoginResponse>
 

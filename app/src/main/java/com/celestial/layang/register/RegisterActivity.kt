@@ -3,11 +3,13 @@ package com.celestial.layang.register
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.celestial.layang.api.ApiClient
 import com.celestial.layang.api.ApiService
 import com.celestial.layang.databinding.ActivityRegister2Binding
 import com.celestial.layang.databinding.ActivityRegisterBinding
+import com.celestial.layang.model.UserData
 import com.celestial.layang.preLogin.LoginActivity
 
 
@@ -27,33 +29,42 @@ class RegisterActivity : AppCompatActivity() {
             startActivity(intent)
         }
         binding.buttonMendaftar.setOnClickListener{
-            val intent = Intent(this,Register2Activity::class.java)
-            startActivity(intent)
+            validateAndNavigate()
         }
     }
-    private fun addUser() {
-//        val username = binding.inputUsername.toString()
-//        val email = binding.inputEmail.toString()
-//        val userPassword = binding.password.toString()
-/*
-        // Membuat objek User
-        val user = User(username = username, userpassword = userPassword, email = email)
+    // Fungsi untuk validasi data
+    private fun validateAndNavigate() {
+        val email = binding.inputEmail.text.toString()
+        val password = binding.password.text.toString()
+        val password2 = binding.password2.text.toString()
 
-        // Melakukan POST ke API
-        val call = apiService.addUser(user)
-        call.enqueue(object : Callback<ResponseObject> {
-            override fun onResponse(call: Call<ResponseObject>, response: Response<ResponseObject>) {
-                if (response.isSuccessful) {
-                    Toast.makeText(this@RegisterActivity, "Berhasillll", Toast.LENGTH_SHORT).show()
-                } else {
-                    // Handle respons gagal
-                }
-            }
+        // Validasi email tidak boleh kosong dan format email valid
+        if (email.isEmpty() || !isValidEmail(email)) {
+            showError("Email tidak valid")
+            return
+        }
 
-            override fun onFailure(call: Call<ResponseObject>, t: Throwable) {
-                // Handle kegagalan koneksi atau request
-            }
-        })*/
+        // Validasi kedua password sesuai dan tidak boleh kosong
+        if (password.isEmpty() || password != password2) {
+            showError("Password tidak cocok")
+            return
+        }
+        navigateToRegisterActivity2(email,password)
     }
 
+
+    private fun showError(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    // Fungsi untuk navigasi ke RegisterActivity2
+    private fun navigateToRegisterActivity2(email:String,password:String) {
+        val intent = Intent(this, Register2Activity::class.java)
+        intent.putExtra("email", email)
+        intent.putExtra("password",password)
+        startActivity(intent)
+    }
+    private fun isValidEmail(email: CharSequence): Boolean {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
 }
