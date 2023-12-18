@@ -1,0 +1,98 @@
+<!-- activity_register.xml -->
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/primary_color"
+    android:padding="10dp">
+
+
+    <Spinner
+        android:id="@+id/spinnerProvinsi"
+        android:layout_width="330dp"
+        android:layout_height="48dp"
+        style="@style/SpinnerTheme"
+        android:prompt="@string/prompt_provinsi"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+       />
+
+    <Spinner
+        android:id="@+id/spinnerKabupaten"
+        android:layout_width="330dp"
+        android:layout_height="48dp"
+        style="@style/SpinnerTheme"
+        android:prompt="@string/prompt_kabupaten"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinnerProvinsi"/>
+
+    <Spinner
+        android:id="@+id/spinnerKecamatan"
+        android:layout_width="330dp"
+        android:layout_height="48dp"
+        style="@style/SpinnerTheme"
+        android:prompt="@string/prompt_kecamatan"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinnerKabupaten"/>
+
+    <Spinner
+        android:id="@+id/spinnerKelurahan"
+        android:layout_width="330dp"
+        android:layout_height="48dp"
+        style="@style/SpinnerTheme"
+        android:prompt="@string/prompt_kelurahan"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinnerKecamatan"/>
+    <EditText
+        android:id="@+id/inputNamaLengkap"
+        style="@style/fieldText"
+        android:drawableLeft="@drawable/ic_people"
+        android:drawableRight="@drawable/ic_tick"
+        android:hint="Nama Lengkap"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerKelurahan" />
+
+    <EditText
+        android:id="@+id/inputNomor"
+        android:drawablePadding="19dp"
+        style="@style/fieldText"
+        android:drawableLeft="@drawable/ic_email"
+        android:drawableRight="@drawable/ic_tick"
+        android:hint="No Hp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputNamaLengkap" />
+    <EditText
+        android:id="@+id/inputAlamat"
+        android:drawablePadding="19dp"
+        android:minHeight="48dp"
+        style="@style/fieldText"
+        android:drawableLeft="@drawable/ic_email"
+        android:drawableRight="@drawable/ic_tick"
+        android:hint="Alamat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputNomor" />
+
+
+    <!-- Add other registration form fields as needed -->
+
+    <Button
+        android:id="@+id/btnRegister"
+        style="@style/CustomButtonStyle"
+        android:layout_width="286dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="40dp"
+        android:text="Register"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/inputAlamat"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

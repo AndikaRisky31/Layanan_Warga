@@ -1,39 +1,45 @@
 package com.celestial.layang.janjiTemu
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.celestial.layang.databinding.ActivityProfileKontakBinding
 
+
 class ProfileKontakActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProfileKontakBinding
-    private lateinit var janjiTemuViewModel: JanjiTemuViewModel
+    private lateinit var kontakViewModel: KontakViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProfileKontakBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        janjiTemuViewModel = ViewModelProvider(this)[JanjiTemuViewModel::class.java]
 
-        // Mengambil ID dari intent
-        val kontakId: Int = intent.getIntExtra("kontak_id", -1)
+        val kontakId: Int = intent.getIntExtra("id", -1)
+        Log.e("id admin",kontakId.toString())
 
-        kontakId.let {
-            val kontak: KontakModel? = janjiTemuViewModel.getKontakById(kontakId)
+        kontakViewModel = ViewModelProvider(this)[KontakViewModel::class.java]
 
-            kontak?.let {
-                binding.apply {
-                    // Bind data ke dalam layout menggunakan binding
-                    this.kontak = it
-                    executePendingBindings()
+        kontakViewModel.getKontakById(kontakId)
 
-                    Glide.with(imageProfileKontak)
-                        .load(it.imageUrl)
-                        .centerCrop()
-                        .into(imageProfileKontak)
-                }
-            }
+        kontakViewModel.kontak.observe(this) { kontak ->
+            displayKontakData(kontak)
+        }
+    }
+
+    private fun displayKontakData(kontak: KontakModel) {
+        binding.apply {
+            // Tampilkan data KontakModel ke elemen UI
+            binding.kontak = kontak
+            // dll.
+            // Load gambar menggunakan Glide atau cara lainnya
+            Glide.with(this@ProfileKontakActivity)
+                .load(kontak.imageURL)
+                .centerCrop()
+                .into(imageProfileKontak)
         }
     }
 }
+

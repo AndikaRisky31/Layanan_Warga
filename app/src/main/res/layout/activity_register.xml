@@ -7,9 +7,8 @@
     <data>
         <variable
             name="viewModel"
-            type="com.celestial.layang.preLogin.RegisterActivity" />
+            type="com.celestial.layang.register.RegisterActivity" />
     </data>
-    
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -54,30 +53,34 @@
         style="@style/fieldText"
         android:drawableLeft="@drawable/ic_email"
         android:drawableRight="@drawable/ic_tick"
+        android:text="a@gmail.com"
         android:hint="Email Address"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text1" />
 
     <EditText
-        android:id="@+id/inputUsername"
-        style="@style/fieldText"
-        android:drawableLeft="@drawable/ic_people"
-        android:drawableRight="@drawable/ic_tick"
-        android:hint="Username"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputEmail" />
-    <EditText
         android:id="@+id/password"
         android:inputType="textPassword"
         style="@style/fieldText"
         android:drawableLeft="@drawable/ic_password"
         android:drawableRight="@drawable/ic_tick"
+        android:text="andika"
         android:hint="Password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/inputUsername"/>
+        app:layout_constraintTop_toBottomOf="@+id/inputEmail" />
+    <EditText
+        android:id="@+id/password2"
+        android:inputType="textPassword"
+        style="@style/fieldText"
+        android:drawableLeft="@drawable/ic_password"
+        android:drawableRight="@drawable/ic_tick"
+        android:text="andika"
+        android:hint="Confirm Password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/password"/>
 
     <Button
         android:id="@+id/buttonMendaftar"
@@ -85,11 +88,11 @@
         android:layout_width="286dp"
         android:layout_height="54dp"
         android:layout_marginTop="20dp"
-        android:text="Mendaftar"
+        android:text="Lanjut"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/password" />
+        app:layout_constraintTop_toBottomOf="@id/password2" />
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -98,7 +101,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/buttonMendaftar">
-
         <TextView
             android:textColor="@color/black"
             android:alpha="0.7"
@@ -113,8 +115,5 @@
             android:text="Masuk"
             android:textStyle="bold"/>
     </LinearLayout>
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

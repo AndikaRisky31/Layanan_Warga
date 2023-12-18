@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.celestial.layang.databinding.LandingscreenBinding
+import com.celestial.layang.register.RegisterActivity
 
 class LandingScreenActivity : AppCompatActivity() {
 
@@ -16,7 +17,7 @@ class LandingScreenActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.buttonGetStarted.setOnClickListener{
-            intent = Intent(this,RegisterActivity::class.java)
+            intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
     }

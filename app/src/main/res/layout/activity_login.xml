@@ -49,7 +49,7 @@
         style="@style/fieldText"
         android:drawableLeft="@drawable/ic_people"
         android:drawableRight="@drawable/ic_tick"
-        android:hint="Username"
+        android:hint="Email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text1" />

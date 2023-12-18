@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.databinding.DataBindingUtil
 import com.celestial.layang.R
 import com.celestial.layang.databinding.FragmentProfileBinding
+import com.celestial.layang.repository.UserDataRepository
 
 class ProfileFragment : Fragment() {
 
@@ -23,8 +24,10 @@ class ProfileFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
 
         // Create an instance of ProfileRepository (you might need to pass necessary parameters)
-        val profileRepository = ProfileRepository() // You need to provide a valid implementation
-        val viewModelFactory = ProfileViewModelFactory(profileRepository)
+        val userDataRepository: UserDataRepository by lazy {
+            UserDataRepository(requireContext())
+        } // You need to provide a valid implementation
+        val viewModelFactory = ProfileViewModelFactory(userDataRepository)
         profileviewmodel = ViewModelProvider(this, viewModelFactory)[ProfileViewModel::class.java]
 
         // Bind the ViewModel to the layout
@@ -37,6 +40,6 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        profileviewmodel.loadProfile("1")
+        profileviewmodel.loadProfile()
     }
 }

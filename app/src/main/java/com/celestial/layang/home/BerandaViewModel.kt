@@ -1,7 +1,11 @@
 package com.celestial.layang.home
 
+import android.content.Context
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.celestial.layang.repository.UserPreferences
+import kotlinx.coroutines.withContext
 
 class BerandaViewModel : ViewModel() {
     // Gunakan MutableLiveData untuk data yang dapat berubah
