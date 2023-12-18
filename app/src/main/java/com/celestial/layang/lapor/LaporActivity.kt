@@ -1,7 +1,9 @@
 package com.celestial.layang.lapor
 
+import android.Manifest
 import android.app.Dialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -11,24 +13,30 @@ import android.provider.MediaStore
 import android.util.Base64
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.celestial.layang.R
 import com.celestial.layang.databinding.ActivityLaporBinding
 import com.celestial.layang.home.MenuActivity
-import com.celestial.layang.lapor.LaporViewModel
 import com.celestial.layang.model.LaporanData
 import com.celestial.layang.model.UserData
+import com.celestial.layang.repository.LaporRepository
 import com.celestial.layang.repository.UserDataRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 import java.io.ByteArrayOutputStream
 
 class LaporActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLaporBinding
     private lateinit var viewModel: LaporViewModel
     private lateinit var laporanData: LaporanData
+    private lateinit var viewModelFactory: LaporViewModelFactory
 
     companion object {
         private const val GALLERY_REQUEST_CODE = 1
+        private const val GALLERY_PERMISSION_REQUEST_CODE = 2
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,15 +44,18 @@ class LaporActivity : AppCompatActivity() {
         binding = ActivityLaporBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Inisialisasi LaporViewModel
-        viewModel = ViewModelProvider(this).get(LaporViewModel::class.java)
+        val laporRepository: LaporRepository by lazy {
+            LaporRepository(this)
+        }
+        viewModelFactory = LaporViewModelFactory(laporRepository)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(LaporViewModel::class.java)
 
         binding.buttonBack.setOnClickListener {
             intent = Intent(this, MenuActivity::class.java)
             startActivity(intent)
         }
         binding.buttonKirim.setOnClickListener {
-            viewModel.saveLaporan(laporanData)
+//            viewModel.saveLaporan(laporanData) //untuk mengirim data ke viewmodel yang berisi pengiriman ke api
 
             val dialog = Dialog(this)
             dialog.setContentView(R.layout.activity_pop_up_screen)
@@ -61,8 +72,39 @@ class LaporActivity : AppCompatActivity() {
         }
 
         binding.btnGanti.setOnClickListener {
-            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-            startActivityForResult(intent, GALLERY_REQUEST_CODE)
+            if (ContextCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.READ_EXTERNAL_STORAGE
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                    GALLERY_PERMISSION_REQUEST_CODE
+                )
+            } else {
+                openGallery()
+            }
+        }
+    }
+
+    private fun openGallery() {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        startActivityForResult(intent, GALLERY_REQUEST_CODE)
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == GALLERY_PERMISSION_REQUEST_CODE) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                openGallery()
+            } else {
+                // Izin ditolak, berikan penanganan sesuai kebutuhan aplikasi Anda
+            }
         }
     }
 
@@ -73,9 +115,10 @@ class LaporActivity : AppCompatActivity() {
             val selectedImageUri: Uri? = data.data
             if (selectedImageUri != null) {
                 binding.ivLapor.setImageURI(selectedImageUri)
-                val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, selectedImageUri)
+                val bitmap =
+                    MediaStore.Images.Media.getBitmap(this.contentResolver, selectedImageUri)
                 val base64Image = convertToBase64(bitmap)
-                laporanData = createLaporanData(base64Image)
+//                laporanData = createLaporanData(base64Image) //pada bagian ini yang buat crash karena memerlukan localhostnya kayaknya
                 updateButtonText()
             } else {
                 // Penanganan kasus ketika gambar tidak dipilih
@@ -94,28 +137,26 @@ class LaporActivity : AppCompatActivity() {
         )
     }
 
-    private fun convertToBase64(bitmap: Bitmap): String {
+    private fun convertToBase64(bitmap:Bitmap): String {
         val outputStream = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
-        return Base64.encodeToString(outputStream.toByteArray(), Base64.DEFAULT)
-    }
-
-    private fun updateButtonText() {
-        val buttonImage = binding.btnGanti
-        if (binding.ivLapor.drawable != null) {
-            // Jika imageViewSelected memiliki gambar yang ditetapkan
-            buttonImage.text = "Ganti Gambar"
-        } else {
-            // Jika imageViewSelected tidak memiliki gambar yang ditetapkan
-            buttonImage.text = "Pilih Gambar"
-        }
+        val byteArray = outputStream.toByteArray()
+        return Base64.encodeToString(byteArray, Base64.DEFAULT)
     }
 
     private fun getUserIDFromUserDataRepository(): Int {
         val userDataRepository = UserDataRepository(this)
-        val userData: UserData = runBlocking {
-            userDataRepository.userData()
+        var userId = 0
+        runBlocking {
+            val userData: UserData = withContext(Dispatchers.IO){
+                userDataRepository.userData()
+            }
+            userId = userData.user_id ?: 0
         }
-        return userData.user_id
+        return userId
+    }
+
+    private fun updateButtonText() {
+        binding.btnGanti.text = "Ganti"
     }
 }

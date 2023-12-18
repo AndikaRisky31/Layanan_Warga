@@ -12,7 +12,6 @@ import androidx.lifecycle.viewModelScope
 import com.celestial.layang.R
 import com.celestial.layang.databinding.ActivityPengajuanIdentityBinding
 import com.celestial.layang.model.PengajuanData
-import com.celestial.layang.profileedit.ProfileEditViewModelFactory
 import com.celestial.layang.repository.PengajuanRepository
 import com.celestial.layang.repository.UserDataRepository
 import kotlinx.coroutines.launch
@@ -24,8 +23,8 @@ class PengajuanIdentityActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_pengajuan_identity)
 
-        val judul = intent.getStringExtra("judul")
-        binding.tvJenis.text = judul
+        val jenis = intent.getStringExtra("judul")
+        binding.tvJenis.text = jenis
 
         val userDataRepository: UserDataRepository by lazy {
             UserDataRepository(this)

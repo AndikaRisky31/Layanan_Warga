@@ -82,7 +82,7 @@
             android:layout_gravity="center|end|top"
             android:background="#00000000"
             android:paddingEnd="16dp"
-            android:text="Ganti"
+            android:text="Tambah"
             android:textAlignment="textEnd"
             android:textColor="@color/secondary_color"
             android:textSize="12sp" />
