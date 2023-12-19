@@ -54,6 +54,21 @@ class LaporActivity : AppCompatActivity() {
             intent = Intent(this, MenuActivity::class.java)
             startActivity(intent)
         }
+        binding.btnGanti.setOnClickListener {
+            if (ContextCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.READ_EXTERNAL_STORAGE
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                    GALLERY_PERMISSION_REQUEST_CODE
+                )
+            } else {
+                openGallery()
+            }
+        }
         binding.buttonKirim.setOnClickListener {
 //            viewModel.saveLaporan(laporanData) //untuk mengirim data ke viewmodel yang berisi pengiriman ke api
 
@@ -69,22 +84,6 @@ class LaporActivity : AppCompatActivity() {
             }
 
             dialog.show()
-        }
-
-        binding.btnGanti.setOnClickListener {
-            if (ContextCompat.checkSelfPermission(
-                    this,
-                    Manifest.permission.READ_EXTERNAL_STORAGE
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
-                ActivityCompat.requestPermissions(
-                    this,
-                    arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-                    GALLERY_PERMISSION_REQUEST_CODE
-                )
-            } else {
-                openGallery()
-            }
         }
     }
 
