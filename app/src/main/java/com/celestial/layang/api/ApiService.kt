@@ -3,8 +3,12 @@ package com.celestial.layang.api
 import com.celestial.layang.model.AdminResponse
 import com.celestial.layang.model.KelurahanIdRequest
 import com.celestial.layang.model.AgendaResponse
+import com.celestial.layang.model.ArticleModel
 import com.celestial.layang.model.ArticleRequest
 import com.celestial.layang.model.ArticleResponse
+import com.celestial.layang.model.ArticleSize
+import com.celestial.layang.model.CheckEmailRequest
+import com.celestial.layang.model.CheckEmailResponse
 import com.celestial.layang.model.DataKabupaten
 import com.celestial.layang.model.DataKecamatan
 import com.celestial.layang.model.DataKelurahan
@@ -21,13 +25,17 @@ import com.celestial.layang.model.RegisterResponse
 import com.celestial.layang.model.UpdateResponse
 import com.celestial.layang.model.UserData
 import com.celestial.layang.model.UserRequest
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Multipart
 import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.PUT
+import retrofit2.http.Part
 import retrofit2.http.Path
 
 interface ApiService {
@@ -36,6 +44,9 @@ interface ApiService {
     fun addUser(@Body user: UserData): Call<RegisterResponse>
     @POST("auth/login")
     fun login(@Body body: LoginRequest): Call<LoginResponse>
+
+    @POST("auth/register")
+    fun checkEmail(@Body body: CheckEmailRequest):Call<CheckEmailResponse>
 
     @PATCH("users/{id}")
     fun updateUser(@Path("id") user_id: String,@Body userData: UserData ): Call<UpdateResponse>
@@ -47,7 +58,7 @@ interface ApiService {
     suspend fun getAgendaList(@Body request: KelurahanIdRequest): Response<AgendaResponse>
 
     @POST("articles/latest")
-    suspend fun getLatestArticles(@Body size:Int): Response<ArticleResponse>
+    suspend fun getLatestArticles(@Body body:ArticleSize): Response<List<ArticleModel>>
     @POST("articles/page")
     suspend fun getArticlesByPage(@Body request: ArticleRequest): Response<ArticleResponse>
 
@@ -69,8 +80,19 @@ interface ApiService {
     @GET("daerah/kelurahan/{districtId}")
     fun getVillages(@Path("districtId") districtId: String): Call<List<DataKelurahan>>
 
-    @POST("pengajuan")
-    suspend fun savePengajuan(@Body request: PengajuanRequest): Response<PengajuanResponse>
+    @Multipart
+    @POST("/api/pengajuan/create")
+    fun createPengajuan(
+        @Part("user_id") userId: RequestBody,
+        @Part("namaLengkap") namaLengkap: RequestBody,
+        @Part("noNik") noNik: RequestBody,
+        @Part("agama") agama: RequestBody,
+        @Part("status") status: RequestBody,
+        @Part("alamat") alamat: RequestBody,
+        @Part("jenisSurat") jenisSurat: RequestBody,
+        @Part fileKTP: MultipartBody.Part,
+        @Part fileKK: MultipartBody.Part
+    ): Call<PengajuanResponse>
 
     @POST("laporan")
     suspend fun saveLaporan(@Body request: LaporanRequest): Response<LaporanResponse>

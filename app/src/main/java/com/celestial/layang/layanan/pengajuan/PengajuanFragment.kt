@@ -56,7 +56,7 @@ class PengajuanFragment : Fragment() {
             dataList.add(PengajuanModel(judul , image()[index]))
         }
         Log.d("ISI DATANYA ", dataList.toString())
-        adapter = PengajuanAdapter(dataList, this@PengajuanFragment)
+        adapter = PengajuanAdapter(dataList, requireContext())
         binding.rvPengajuan.layoutManager = LinearLayoutManager(requireContext())
         binding.rvPengajuan.adapter = adapter
     }

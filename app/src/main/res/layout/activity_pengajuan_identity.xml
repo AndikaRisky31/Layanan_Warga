@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.celestial.layang.layanan.pengajuan.pengajuanidentity.PengajuanIdentityViewModel" />
+            type="com.celestial.layang.layanan.pengajuan.pengajuanidentity.PengajuanViewModel" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -17,7 +17,9 @@
         android:layout_width="match_parent"
         android:layout_height="94dp"
         android:background="@color/secondary_color"
-        tools:layout_editor_absoluteX="3dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView3"
@@ -25,6 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
+        android:textColor="@color/black"
         android:text="Pengajuan"
         android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,6 +74,7 @@
         android:layout_height="50dp"
         android:background="@drawable/card_preset"
         android:padding="4dp"
+        android:textColor="@color/black"
         android:layout_marginStart="24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5"/>
@@ -91,6 +95,8 @@
         android:id="@+id/et_nik"
         android:layout_width="360dp"
         android:layout_height="50dp"
+        android:inputType="number"
+        android:textColor="@color/black"
         android:background="@drawable/card_preset"
         android:padding="4dp"
         android:layout_marginStart="24dp"
@@ -103,6 +109,7 @@
         android:layout_width="140dp"
         android:layout_height="20dp"
         android:layout_marginTop="7dp"
+        android:textColor="@color/black"
         android:layout_marginStart="24dp"
         android:text="Tempat, Tanggal Lahir"
         app:layout_constraintStart_toStartOf="parent"
@@ -113,6 +120,7 @@
         android:layout_width="360dp"
         android:layout_height="50dp"
         android:background="@drawable/card_preset"
+        android:textColor="@color/black"
         android:padding="4dp"
         android:layout_marginStart="24dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -136,6 +144,7 @@
         android:layout_height="50dp"
         android:background="@drawable/card_preset"
         android:padding="4dp"
+        android:textColor="@color/black"
         android:layout_marginStart="24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8"/>
@@ -158,6 +167,7 @@
         android:layout_height="50dp"
         android:background="@drawable/card_preset"
         android:padding="4dp"
+        android:textColor="@color/black"
         android:layout_marginStart="24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9"/>
@@ -180,6 +190,7 @@
         android:layout_height="100dp"
         android:background="@drawable/card_preset"
         android:padding="4dp"
+        android:textColor="@color/black"
         android:layout_marginStart="24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10"/>

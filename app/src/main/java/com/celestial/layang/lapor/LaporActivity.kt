@@ -116,6 +116,6 @@ class LaporActivity : AppCompatActivity() {
         val userData: UserData = runBlocking {
             userDataRepository.userData()
         }
-        return userData.user_id
+        return userData.user_id!!
     }
 }

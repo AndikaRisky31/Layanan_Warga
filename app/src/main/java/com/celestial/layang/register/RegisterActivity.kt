@@ -9,8 +9,13 @@ import com.celestial.layang.api.ApiClient
 import com.celestial.layang.api.ApiService
 import com.celestial.layang.databinding.ActivityRegister2Binding
 import com.celestial.layang.databinding.ActivityRegisterBinding
+import com.celestial.layang.model.CheckEmailRequest
+import com.celestial.layang.model.CheckEmailResponse
 import com.celestial.layang.model.UserData
 import com.celestial.layang.preLogin.LoginActivity
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class RegisterActivity : AppCompatActivity() {
@@ -49,7 +54,36 @@ class RegisterActivity : AppCompatActivity() {
             showError("Password tidak cocok")
             return
         }
-        navigateToRegisterActivity2(email,password)
+        checkEmailOnServer(email,password)
+    }
+    private fun checkEmailOnServer(email: String, password: String) {
+        val checkEmailRequest = CheckEmailRequest(email = email)
+        val call: Call<CheckEmailResponse> = apiService.checkEmail(checkEmailRequest)
+
+        call.enqueue(object : Callback<CheckEmailResponse> {
+            override fun onResponse(call: Call<CheckEmailResponse>, response: Response<CheckEmailResponse>) {
+                if (response.isSuccessful) {
+                    val checkEmailResponse: CheckEmailResponse? = response.body()
+                    checkEmailResponse?.let {
+                        // Lakukan sesuatu dengan response
+                        if (!checkEmailResponse.status) {
+                            showError("Email sudah terdaftar")
+                        } else {
+                            // Email belum terdaftar, lanjutkan ke registrasi
+                            navigateToRegisterActivity2(email, password)
+                        }
+                    }
+                } else {
+                    // Handle error response
+                    showError("Gagal memeriksa email")
+                }
+            }
+
+            override fun onFailure(call: Call<CheckEmailResponse>, t: Throwable) {
+                // Handle kesalahan jaringan atau lainnya
+                showError("Gagal memeriksa email")
+            }
+        })
     }
 
 

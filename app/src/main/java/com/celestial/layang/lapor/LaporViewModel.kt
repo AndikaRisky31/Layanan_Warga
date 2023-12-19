@@ -3,6 +3,7 @@ package com.celestial.layang.lapor
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.celestial.layang.api.ApiClient
 import com.celestial.layang.api.ApiService
 import com.celestial.layang.model.LaporanData
 import com.celestial.layang.model.LaporanRequest
@@ -20,6 +21,7 @@ class LaporViewModel(
     private lateinit var apiService: ApiService
 
     fun saveLaporan(laporanData: LaporanData) {
+        apiService = ApiClient.apiService
         val laporanRequest = LaporanRequest(laporanData)
         viewModelScope.launch(Dispatchers.IO) {
             try {
