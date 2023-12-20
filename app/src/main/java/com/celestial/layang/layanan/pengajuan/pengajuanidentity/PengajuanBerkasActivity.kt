@@ -107,7 +107,7 @@ class PengajuanBerkasActivity : AppCompatActivity() {
         val agama = halamanPertamaData.agama.toRequestBody("text/plain".toMediaTypeOrNull())
         val status = halamanPertamaData.status.toRequestBody("text/plain".toMediaTypeOrNull())
         val alamat = halamanPertamaData.alamat.toRequestBody("text/plain".toMediaTypeOrNull())
-        val jenisSurat = "Surat Pengantar".toRequestBody("text/plain".toMediaTypeOrNull())
+        val jenisSurat = halamanPertamaData.jenis.toRequestBody("text/plain".toMediaTypeOrNull())
         val fileKTP = prepareFilePart("fileKTP", halamanPertamaData.imageKTP)
         val fileKK = prepareFilePart("fileKK", halamanPertamaData.imageKK)
 

@@ -4,8 +4,12 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.celestial.layang.R
 import com.celestial.layang.databinding.ActivityPengajuanIdentityBinding
 import com.celestial.layang.model.PengajuanData
 import com.celestial.layang.repository.UserPreferences
@@ -33,31 +37,60 @@ class PengajuanIdentityActivity : AppCompatActivity() {
         binding.buttonBack.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
+        val spinnerStatus: Spinner = binding.spinnerStatus
+
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.status_array, // Define an array resource in your `res/values/arrays.xml` file
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
+            spinnerStatus.adapter = adapter
+        }
     }
 
     // Handler untuk tombol lanjut ke halaman kedua
     private fun navigateToPengajuanBerkas() {
         val pengajuanData = createData()
-        val intent = Intent(this, PengajuanBerkasActivity::class.java)
-        intent.putExtra("halamanPertamaData", pengajuanData)
-        startActivity(intent)
+
+        if (isDataValid(pengajuanData)) {
+            val intent = Intent(this, PengajuanBerkasActivity::class.java)
+            intent.putExtra("halamanPertamaData", pengajuanData)
+            startActivity(intent)
+        } else {
+            // Show a message or perform other actions if the data is not valid
+            Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun createData(): PengajuanData {
         val data = userPreferences.getUserData()
         return PengajuanData(
             pengajuan_id = null,
-            user_id = (data.user_id ?: "") as Int, // Provide a default value if user_id is null
+            user_id = data.user_id ?: 0,
             nama = binding.etNama.text.toString(),
-            nik = binding.etNik.text.toString().toInt(),
-            ttl = binding.etTtl.text.toString(),
+            nik = binding.etNik.text.toString().toIntOrNull() ?: 0,
+            ttl = "",
             agama = binding.etAgama.text.toString(),
-            status = binding.etStatus.text.toString(),
+            status = binding.spinnerStatus.selectedItem.toString(), // Retrieve selected item from Spinner
             alamat = binding.etAlamat.text.toString(),
             jenis = jenisSurat,
-            imageKTP = "", // Kosongkan karena gambar akan diunggah di halaman kedua
-            imageKK = ""   // Kosong
+            imageKTP = "",
+            imageKK = ""
         )
     }
+
+
+    private fun isDataValid(pengajuanData: PengajuanData): Boolean {
+        // Add your validation logic here
+        return pengajuanData.nama.isNotBlank() &&
+                pengajuanData.nik > 0 &&
+                pengajuanData.agama.isNotBlank() &&
+                pengajuanData.status.isNotBlank() &&
+                pengajuanData.alamat.isNotBlank()
+    }
+
 
 }

@@ -34,4 +34,12 @@
         <item>22/04/2022</item>
         <item>22/04/2020</item>
     </string-array>
+    <array name="status_array">
+        <item>Islam</item>
+        <item>Kristen</item>
+        <item>Katholik</item>
+        <item>Hindu</item>
+        <item>Budha</item>
+        <item>Khonghucu</item>
+    </array>
 </resources>
