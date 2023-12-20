@@ -57,11 +57,11 @@ interface ApiService {
     @POST("articles/page")
     suspend fun getArticlesByPage(@Body request: ArticleRequest): Response<ArticleResponse>
 
-    @POST("admin/kelurahan_id")
-    suspend fun getAdmin(@Body request: KelurahanIdRequest):Response<AdminResponse>
+    @GET("admin/{kelurahan_id}")
+    suspend fun getAdmin(@Path("kelurahan_id") kelurahan_id:String):Response<AdminResponse>
 
-    @POST("admin/id")
-    suspend fun getAdminById(@Body request: IdRequest):Response<AdminResponse>
+    @GET("admin/id/{id}")
+    suspend fun getAdminById(@Path("id") id:String):Response<AdminResponse>
 
     @GET("daerah/provinsi/all")
     fun getProvinces(): Call<List<DataProvinsi>>

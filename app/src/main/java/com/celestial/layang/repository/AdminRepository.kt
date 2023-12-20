@@ -17,7 +17,7 @@ class AdminRepository {
     suspend fun getAdminByKelurahanId(kelurahan_id: String): List<KontakModel> {
         return try {
             withContext(CoroutineScope(Dispatchers.IO).coroutineContext) {
-                val response = apiService.getAdmin(KelurahanIdRequest(kelurahan_id))
+                val response = apiService.getAdmin(kelurahan_id)
                 if (response.isSuccessful) {
                     response.body()?.data ?: emptyList()
                 } else {
@@ -33,7 +33,7 @@ class AdminRepository {
     suspend fun getAdminById(id:Int):KontakModel{
         return try {
             withContext(CoroutineScope(Dispatchers.IO).coroutineContext) {
-                val response = apiService.getAdminById(IdRequest(id))
+                val response = apiService.getAdminById(id.toString())
                 if (response.isSuccessful) {
                     response.body()?.data?.firstOrNull() ?: throw NoSuchElementException("Data not found")
                 } else {
