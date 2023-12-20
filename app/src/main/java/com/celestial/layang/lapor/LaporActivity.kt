@@ -1,6 +1,7 @@
 package com.celestial.layang.lapor
 
 import android.Manifest
+import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -12,27 +13,35 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Base64
 import android.widget.Button
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProvider
 import com.celestial.layang.R
+import com.celestial.layang.api.ApiClient
+import com.celestial.layang.api.ApiService
 import com.celestial.layang.databinding.ActivityLaporBinding
 import com.celestial.layang.home.MenuActivity
-import com.celestial.layang.model.LaporanData
-import com.celestial.layang.model.UserData
-import com.celestial.layang.repository.LaporRepository
-import com.celestial.layang.repository.UserDataRepository
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
+import com.celestial.layang.model.LaporanResponse
+import com.celestial.layang.repository.UserPreferences
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.io.ByteArrayOutputStream
+import java.io.File
 
 class LaporActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLaporBinding
-    private lateinit var viewModel: LaporViewModel
-    private lateinit var laporanData: LaporanData
-    private lateinit var viewModelFactory: LaporViewModelFactory
+    private val apiService: ApiService = ApiClient.apiService
+
+    private val userPreferences: UserPreferences by lazy {
+        UserPreferences(getSharedPreferences("User_Data", MODE_PRIVATE))
+    }
+    private var selectedImageUri: Uri? = null
 
     companion object {
         private const val GALLERY_REQUEST_CODE = 1
@@ -44,16 +53,11 @@ class LaporActivity : AppCompatActivity() {
         binding = ActivityLaporBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val laporRepository: LaporRepository by lazy {
-            LaporRepository(this)
-        }
-        viewModelFactory = LaporViewModelFactory(laporRepository)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(LaporViewModel::class.java)
-
         binding.buttonBack.setOnClickListener {
             intent = Intent(this, MenuActivity::class.java)
             startActivity(intent)
         }
+
         binding.btnGanti.setOnClickListener {
             if (ContextCompat.checkSelfPermission(
                     this,
@@ -69,28 +73,27 @@ class LaporActivity : AppCompatActivity() {
                 openGallery()
             }
         }
+
         binding.buttonKirim.setOnClickListener {
-//            viewModel.saveLaporan(laporanData) //untuk mengirim data ke viewmodel yang berisi pengiriman ke api
-
-            val dialog = Dialog(this)
-            dialog.setContentView(R.layout.activity_pop_up_screen)
-            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
-            val buttonOkay = dialog.findViewById<Button>(R.id.okay)
-            buttonOkay.setOnClickListener {
-                intent = Intent(this, MenuActivity::class.java)
-                startActivity(intent)
-                dialog.dismiss()
-            }
-
-            dialog.show()
+            saveLaporan()
         }
     }
 
     private fun openGallery() {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        startActivityForResult(intent, GALLERY_REQUEST_CODE)
+        resultLauncher.launch(intent)
     }
+
+    private val resultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == RESULT_OK) {
+                result.data?.let {
+                    selectedImageUri = it.data
+                    binding.ivLapor.setImageURI(selectedImageUri)
+                    updateButtonText()
+                }
+            }
+        }
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -102,60 +105,93 @@ class LaporActivity : AppCompatActivity() {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 openGallery()
             } else {
-                // Izin ditolak, berikan penanganan sesuai kebutuhan aplikasi Anda
+                // Handle permission denied
             }
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
 
-        if (resultCode == RESULT_OK && data != null) {
-            val selectedImageUri: Uri? = data.data
-            if (selectedImageUri != null) {
-                binding.ivLapor.setImageURI(selectedImageUri)
-                val bitmap =
-                    MediaStore.Images.Media.getBitmap(this.contentResolver, selectedImageUri)
-                val base64Image = convertToBase64(bitmap)
-//                laporanData = createLaporanData(base64Image) //pada bagian ini yang buat crash karena memerlukan localhostnya kayaknya
-                updateButtonText()
-            } else {
-                // Penanganan kasus ketika gambar tidak dipilih
-            }
-        }
-    }
-
-    private fun createLaporanData(base64Image: String): LaporanData {
-        return LaporanData(
-            laporan_id = 1,
-            user_id = getUserIDFromUserDataRepository(),
-            bukti = base64Image,
-            lokasi = binding.etLokasi.text.toString(),
-            jenis = binding.etJenis.text.toString(),
-            deskripsi = binding.etDesc.text.toString()
-        )
-    }
-
-    private fun convertToBase64(bitmap:Bitmap): String {
+    private fun convertToBase64(uri: Uri): String {
+        val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
         val outputStream = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
         val byteArray = outputStream.toByteArray()
         return Base64.encodeToString(byteArray, Base64.DEFAULT)
     }
 
-    private fun getUserIDFromUserDataRepository(): Int {
-        val userDataRepository = UserDataRepository(this)
-        var userId = 0
-        runBlocking {
-            val userData: UserData = withContext(Dispatchers.IO){
-                userDataRepository.userData()
-            }
-            userId = userData.user_id ?: 0
-        }
-        return userId
-    }
-
     private fun updateButtonText() {
         binding.btnGanti.text = "Ganti"
+    }
+    private fun prepareFilePart(partName: String, base64Image: String): MultipartBody.Part {
+        val decodedBytes = Base64.decode(base64Image, Base64.DEFAULT)
+        val file = File(cacheDir, "temp_image.jpeg")
+        file.writeBytes(decodedBytes)
+
+        val requestFile = file.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+        return MultipartBody.Part.createFormData(partName, "temp_image.jpeg", requestFile)
+    }
+
+    private fun saveLaporan() {
+        selectedImageUri?.let { uri ->
+            val base64Image = convertToBase64(uri)
+
+            val userId = userPreferences.getUserData().user_id.toString()
+            val lokasi = binding.etLokasi.text.toString()
+            val jenis = binding.etJenis.text.toString()
+            val deskripsi = binding.etDesc.text.toString()
+
+            val userIdRequestBody = userId.toRequestBody("text/plain".toMediaTypeOrNull())
+            val lokasiRequestBody = lokasi.toRequestBody("text/plain".toMediaTypeOrNull())
+            val jenisRequestBody = jenis.toRequestBody("text/plain".toMediaTypeOrNull())
+            val deskripsiRequestBody = deskripsi.toRequestBody("text/plain".toMediaTypeOrNull())
+            val buktiRequestBody = prepareFilePart("bukti", base64Image)
+            val call: Call<LaporanResponse> = apiService.uploadLaporan(
+                userIdRequestBody,
+                lokasiRequestBody,
+                jenisRequestBody,
+                deskripsiRequestBody,
+                buktiRequestBody
+            )
+            call.enqueue(object : Callback<LaporanResponse> {
+                override fun onResponse(call: Call<LaporanResponse>, response: Response<LaporanResponse>) {
+                    if (response.isSuccessful) {
+                        val yourResponse = response.body()
+
+                        showSuccessDialog()
+                    } else {
+                        // Tampilkan pop-up dengan memanggil fungsi showErrorDialog() jika respons tidak sukses
+                        showErrorDialog("Pengajuan failed: ${response.message()}")
+                    }
+                }
+                override fun onFailure(call: Call<LaporanResponse>, t: Throwable) {
+                    showErrorDialog("Failed to create pengajuan. Please try again.")
+                }
+            })
+
+
+        }
+    }
+    private fun showSuccessDialog() {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.activity_pop_up_screen)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val buttonOkay = dialog.findViewById<Button>(R.id.okay)
+        buttonOkay.setOnClickListener {
+            startActivity(Intent(this, MenuActivity::class.java))
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+    private fun showErrorDialog(message: String) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Error")
+        builder.setMessage(message)
+        builder.setPositiveButton("OK") { dialog, which ->
+            // Lakukan aksi setelah tombol OK ditekan
+            // Contohnya, tutup dialog atau perintahkan pengguna untuk mencoba lagi
+        }
+        builder.show()
     }
 }

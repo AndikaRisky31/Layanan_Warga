@@ -48,9 +48,7 @@ class LoginActivity : AppCompatActivity() {
 
         // Event listener button login
         binding.buttonMasuk.setOnClickListener {
-            intent = Intent(this@LoginActivity, MenuActivity::class.java)
-            startActivity(intent)
-            //loginUser(binding.inputUsername.text.toString(), binding.password.text.toString())
+            loginUser(binding.inputUsername.text.toString(), binding.password.text.toString())
         }
     }
 

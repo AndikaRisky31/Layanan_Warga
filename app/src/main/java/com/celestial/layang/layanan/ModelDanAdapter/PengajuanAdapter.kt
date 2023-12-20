@@ -1,17 +1,17 @@
 package com.celestial.layang.layanan.ModelDanAdapter
 
+import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 import com.celestial.layang.databinding.PengajuanItemBinding
-import com.celestial.layang.layanan.pengajuan.PengajuanFragment
 import com.celestial.layang.layanan.pengajuan.pengajuanidentity.PengajuanIdentityActivity
 
 class PengajuanAdapter(
     private val list: List<PengajuanModel>,
-    private val context: PengajuanFragment
+    private val context: Context
 ) : RecyclerView.Adapter<PengajuanAdapter.ViewHolder>() {
 
     class ViewHolder(val binding: PengajuanItemBinding) : RecyclerView.ViewHolder(binding.root)
@@ -32,7 +32,7 @@ class PengajuanAdapter(
             tvJudul.text = item.judul
 
             holder.itemView.setOnClickListener {
-                val intent = Intent(context.requireContext(), PengajuanIdentityActivity::class.java)
+                val intent = Intent(context, PengajuanIdentityActivity::class.java)
                 intent.putExtra("judul", item.judul)
                 context.startActivity(intent)
             }

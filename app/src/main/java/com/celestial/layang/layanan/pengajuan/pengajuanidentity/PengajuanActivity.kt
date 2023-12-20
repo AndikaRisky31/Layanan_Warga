@@ -7,7 +7,6 @@ import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.celestial.layang.R
 import com.celestial.layang.databinding.ActivityPengajuanIdentityBinding
@@ -37,7 +36,7 @@ class PengajuanIdentityActivity : AppCompatActivity() {
         binding.buttonBack.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
-        val spinnerStatus: Spinner = binding.spinnerStatus
+        val spinnerStatus: Spinner = binding.spinnerAgama
 
         ArrayAdapter.createFromResource(
             this,
@@ -71,10 +70,9 @@ class PengajuanIdentityActivity : AppCompatActivity() {
             pengajuan_id = null,
             user_id = data.user_id ?: 0,
             nama = binding.etNama.text.toString(),
-            nik = binding.etNik.text.toString().toIntOrNull() ?: 0,
-            ttl = "",
-            agama = binding.etAgama.text.toString(),
-            status = binding.spinnerStatus.selectedItem.toString(), // Retrieve selected item from Spinner
+            nik = binding.etNik.text.toString(),
+            agama = binding.spinnerAgama.selectedItem.toString(),
+            status =  binding.etStatus.text.toString(),
             alamat = binding.etAlamat.text.toString(),
             jenis = jenisSurat,
             imageKTP = "",
@@ -84,9 +82,10 @@ class PengajuanIdentityActivity : AppCompatActivity() {
 
 
     private fun isDataValid(pengajuanData: PengajuanData): Boolean {
+        Log.e("hasil data",pengajuanData.toString())
         // Add your validation logic here
         return pengajuanData.nama.isNotBlank() &&
-                pengajuanData.nik > 0 &&
+                pengajuanData.nik.isNotBlank() &&
                 pengajuanData.agama.isNotBlank() &&
                 pengajuanData.status.isNotBlank() &&
                 pengajuanData.alamat.isNotBlank()

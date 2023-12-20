@@ -1,5 +1,6 @@
 package com.celestial.layang.profile
 
+import android.content.Context
 import android.content.Intent
 import android.view.View
 import androidx.appcompat.view.ContextThemeWrapper
@@ -10,8 +11,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.celestial.layang.R
 import com.celestial.layang.model.UserData
+import com.celestial.layang.preLogin.LoginActivity
 import com.celestial.layang.profileedit.ProfileEditActivity
 import com.celestial.layang.repository.UserDataRepository
+import com.celestial.layang.repository.UserPreferences
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -58,7 +61,7 @@ class ProfileViewModel(private val repository: UserDataRepository) : ViewModel()
                 }
                 R.id.logout -> {
                     // Handle Logout click
-                    // Navigasi ke halaman LogoutFragment atau lakukan aksi logout
+                    logout(view.context)
                     true
                 }
                 else -> false
@@ -67,5 +70,17 @@ class ProfileViewModel(private val repository: UserDataRepository) : ViewModel()
 
         popupMenu.show()
     }
+    private fun logout(context: Context) {
+        // Add logic for logging out here, e.g., clearing user session, etc.
 
+        // Delete user preferences
+        val sharedPreferences = context.getSharedPreferences("User_Data", Context.MODE_PRIVATE)
+        val userPreferences = UserPreferences(sharedPreferences)
+        userPreferences.deleteUserData()
+
+        // Navigate to the login or splash screen
+        val intent = Intent(context, LoginActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        context.startActivity(intent)
+    }
 }

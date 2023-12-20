@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.celestial.layang.layanan.pengajuan.pengajuanidentity.PengajuanViewModel" />
+            type="com.celestial.layang.layanan.pengajuan.pengajuanidentity.PengajuanIdentityActivity" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -103,8 +103,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6"/>
 
-
-
     <TextView
         android:id="@+id/textView8"
         style="@style/text1"
@@ -115,10 +113,10 @@
         android:text="Agama"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_nik" />
-
-    <EditText
-        android:id="@+id/et_agama"
+    <Spinner
+        android:id="@+id/spinner_agama"
         android:layout_width="360dp"
+        style="@style/SpinnerTheme"
         android:layout_height="50dp"
         android:background="@drawable/card_preset"
         android:padding="4dp"
@@ -137,10 +135,9 @@
         android:layout_marginStart="24dp"
         android:text="Status"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_agama" />
-
-    <Spinner
-        android:id="@+id/spinner_status"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_agama" />
+    <EditText
+        android:id="@+id/et_status"
         android:layout_width="360dp"
         android:layout_height="50dp"
         android:background="@drawable/card_preset"
@@ -149,7 +146,6 @@
         android:layout_marginStart="24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9"/>
-
 
     <TextView
         android:id="@+id/textView10"
@@ -160,7 +156,7 @@
         android:layout_marginStart="24dp"
         android:text="Alamat Lengkap"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_status" />
+        app:layout_constraintTop_toBottomOf="@+id/et_status" />
 
     <EditText
         android:id="@+id/et_alamat"

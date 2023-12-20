@@ -1,7 +1,6 @@
 package com.celestial.layang.api
 
 import com.celestial.layang.model.AdminResponse
-import com.celestial.layang.model.KelurahanIdRequest
 import com.celestial.layang.model.AgendaResponse
 import com.celestial.layang.model.ArticleModel
 import com.celestial.layang.model.ArticleRequest
@@ -14,17 +13,14 @@ import com.celestial.layang.model.DataKecamatan
 import com.celestial.layang.model.DataKelurahan
 import com.celestial.layang.model.DataProvinsi
 import com.celestial.layang.model.IdRequest
-import com.celestial.layang.model.LaporanData
-import com.celestial.layang.model.LaporanRequest
+import com.celestial.layang.model.KelurahanIdRequest
 import com.celestial.layang.model.LaporanResponse
 import com.celestial.layang.model.LoginRequest
 import com.celestial.layang.model.LoginResponse
-import com.celestial.layang.model.PengajuanRequest
 import com.celestial.layang.model.PengajuanResponse
 import com.celestial.layang.model.RegisterResponse
 import com.celestial.layang.model.UpdateResponse
 import com.celestial.layang.model.UserData
-import com.celestial.layang.model.UserRequest
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -34,7 +30,6 @@ import retrofit2.http.GET
 import retrofit2.http.Multipart
 import retrofit2.http.PATCH
 import retrofit2.http.POST
-import retrofit2.http.PUT
 import retrofit2.http.Part
 import retrofit2.http.Path
 
@@ -81,7 +76,7 @@ interface ApiService {
     fun getVillages(@Path("districtId") districtId: String): Call<List<DataKelurahan>>
 
     @Multipart
-    @POST("/api/pengajuan/create")
+    @POST("pengajuan/create")
     fun createPengajuan(
         @Part("user_id") userId: RequestBody,
         @Part("namaLengkap") namaLengkap: RequestBody,
@@ -94,6 +89,13 @@ interface ApiService {
         @Part fileKK: MultipartBody.Part
     ): Call<PengajuanResponse>
 
-    @POST("laporan")
-    suspend fun saveLaporan(@Body request: LaporanRequest): Response<LaporanResponse>
+    @Multipart
+    @POST("laporan/create") // Replace with your actual endpoint
+    fun uploadLaporan(
+        @Part("user_id") userId: RequestBody,
+        @Part("lokasi_laporan") lokasi: RequestBody,
+        @Part("jenis_laporan") jenis: RequestBody,
+        @Part("deskripsi") deskripsi: RequestBody,
+        @Part bukti: MultipartBody.Part
+    ):Call<LaporanResponse>
 }
