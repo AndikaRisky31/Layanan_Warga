@@ -41,6 +41,9 @@ data class ArticleResponse(
     val message: String,
     val data:List<ArticleModel>
 )
+data class ArticleSize(
+    val size: Int
+)
 data class AdminResponse(
     val message: String,
     val data: List<KontakModel>
@@ -69,6 +72,13 @@ data class LaporanResponse(
     val success: Boolean,
     val message: String,
     val data: LaporanData
+)
+data class CheckEmailRequest(
+    val email: String
+)
+data class CheckEmailResponse(
+    val status : Boolean,
+    val message: String
 )
 
 

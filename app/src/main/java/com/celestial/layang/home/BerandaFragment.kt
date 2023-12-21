@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.celestial.layang.agenda.AgendaActivity
@@ -16,13 +17,14 @@ import com.celestial.layang.databinding.FragmentBerandaBinding
 import com.celestial.layang.fasilitas.FasilitasActivity
 import com.celestial.layang.janjiTemu.JanjiTemuActivity
 import com.celestial.layang.repository.UserPreferences
+import kotlinx.coroutines.launch
 
 class BerandaFragment : Fragment() {
 
     private lateinit var binding: FragmentBerandaBinding
     private lateinit var beritaAdapter: BeritaAdapter
     private lateinit var berandaViewModel: BerandaViewModel
-    private lateinit var recyclerView:RecyclerView
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,39 +36,57 @@ class BerandaFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val userPreferences: UserPreferences by lazy {
-            UserPreferences(requireContext().getSharedPreferences("User_Data", Context.MODE_PRIVATE))
+            UserPreferences(requireActivity().getSharedPreferences("User_Data", Context.MODE_PRIVATE))
         }
-        val data = userPreferences.getUserData()
+
         berandaViewModel = ViewModelProvider(this)[BerandaViewModel::class.java]
-        binding.username.text = "Hi, ${data.username}"
-        val beritaList = berandaViewModel.beritaList.value?: emptyList()
 
-        // Inisialisasi adapter
-        beritaAdapter = BeritaAdapter(beritaList)
+        // Observe changes in LiveData and update the UI accordingly
+        berandaViewModel.beritaList.observe(viewLifecycleOwner) { latestArticles ->
+            // Set up RecyclerView
+            beritaAdapter = BeritaAdapter(latestArticles)
+            recyclerView.adapter = beritaAdapter
+        }
 
-        // Set up RecyclerView
-        recyclerView = binding.listberita
-        recyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-        recyclerView.adapter = beritaAdapter
-        binding.executePendingBindings()
-        // Intent untuk memulai FasilitasActivity
+        binding.username.text = "Hi, ${userPreferences.getUserData().username}"
+
+        // Set up RecyclerView using apply function
+        recyclerView = binding.listberita.apply {
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        }
+
+        // Intent for FasilitasActivity
         binding.icFasilitas.setOnClickListener {
-            val intent = Intent(requireContext(), FasilitasActivity::class.java)
-            startActivity(intent)
-        }
-        binding.icJanjiTemu.setOnClickListener{
-            val intent = Intent(requireContext(),JanjiTemuActivity::class.java)
-            startActivity(intent)
-        }
-        binding.icBantuan.setOnClickListener{
-            val intent = Intent(requireContext(),BantuanActivity::class.java)
-            startActivity(intent)
-        }
-        binding.icAgenda.setOnClickListener{
-            val intent = Intent(requireContext(),AgendaActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(requireContext(), FasilitasActivity::class.java))
         }
 
+        binding.icJanjiTemu.setOnClickListener {
+            startActivity(Intent(requireContext(), JanjiTemuActivity::class.java))
+        }
+
+        binding.icBantuan.setOnClickListener {
+            startActivity(Intent(requireContext(), BantuanActivity::class.java))
+        }
+
+        binding.icAgenda.setOnClickListener {
+            startActivity(Intent(requireContext(), AgendaActivity::class.java))
+        }
+
+        // Fetch latest articles when the fragment is created
+        fetchLatestArticles()
+    }
+
+    private fun fetchLatestArticles() {
+        lifecycleScope.launch {
+            try {
+                // Call the function in the ViewModel to fetch the latest articles
+                berandaViewModel.fetchLatestArticles()
+            } catch (e: Exception) {
+                // Handle exception if an error occurs during the request
+                // Display an error message or log the error
+            }
+        }
     }
 }

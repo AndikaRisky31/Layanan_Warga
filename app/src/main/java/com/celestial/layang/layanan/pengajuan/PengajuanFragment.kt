@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.celestial.layang.R
@@ -56,7 +55,7 @@ class PengajuanFragment : Fragment() {
             dataList.add(PengajuanModel(judul , image()[index]))
         }
         Log.d("ISI DATANYA ", dataList.toString())
-        adapter = PengajuanAdapter(dataList, this@PengajuanFragment)
+        adapter = PengajuanAdapter(dataList, requireContext())
         binding.rvPengajuan.layoutManager = LinearLayoutManager(requireContext())
         binding.rvPengajuan.adapter = adapter
     }

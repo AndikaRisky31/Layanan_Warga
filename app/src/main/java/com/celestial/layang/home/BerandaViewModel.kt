@@ -1,25 +1,38 @@
 package com.celestial.layang.home
 
-import android.content.Context
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.celestial.layang.repository.UserPreferences
+import com.celestial.layang.api.ApiClient
+import com.celestial.layang.api.ApiService
+import com.celestial.layang.model.ArticleModel
+import com.celestial.layang.model.ArticleSize
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class BerandaViewModel : ViewModel() {
     // Gunakan MutableLiveData untuk data yang dapat berubah
-    val beritaList = MutableLiveData<List<BeritaModel>>()
+    private var apiService: ApiService = ApiClient.apiService
+    val beritaList = MutableLiveData<List<ArticleModel>>()
 
-    init {
-        // Isi data berita saat ViewModel diinisialisasi
-        beritaList.value = listOf(
-            BeritaModel("https://pixabay.com/get/g331ea08842c650160f75fb9a9417245d3c2f4d56db8e07dde7ee63b07f10c334fd0e96056352c695cf027726bc5b8af5_1280.jpg",
-                "Judul Berita 1", "Senin,6 nov 2023", "Deskripsi Berita 1"),
-            BeritaModel("https://pixabay.com/get/gb0fc321c654853599474b4abdb2a822373b38731773e99e61fd664eeb43e56e37263d68ba45fbfeeba05175515aecf45_1280.jpg",
-                "Judul Berita 2", "kamis, 5 Okt 2023", "Deskripsi Berita 2"),
-            BeritaModel("https://pixabay.com/get/g62ae4535fa8cc8756e3543e955aaf00236db934cb48762a916c86fd41108bc8d6c40e4b5e8c7e90352a14e0872034aea_1280.jpg",
-                "Judul berita 3", "Minggu,24 Sept 2023", "Deskripsi Berita 3")
-        )
+    // Gunakan suspend function untuk melakukan pemanggilan API secara asynchronous
+    suspend fun fetchLatestArticles() {
+        withContext(Dispatchers.IO) {
+            try {
+                // Panggil ApiService di sini
+                val response = apiService.getLatestArticles(ArticleSize(4)) // Ganti 3 dengan ukuran yang diinginkan
+
+                if (response.isSuccessful) {
+                    // Ambil data dari response.body() dan isi ke MutableLiveData
+                    beritaList.postValue(response.body())
+                } else {
+                    // Handle kesalahan response di sini
+                    // Misalnya, tampilkan pesan kesalahan atau log
+                }
+            } catch (e: Exception) {
+                // Handle exception jika terjadi kesalahan saat melakukan request
+                // Misalnya, tampilkan pesan kesalahan atau log
+            }
+        }
     }
 }
+

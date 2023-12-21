@@ -53,7 +53,6 @@
         style="@style/fieldText"
         android:drawableLeft="@drawable/ic_email"
         android:drawableRight="@drawable/ic_tick"
-        android:text="a@gmail.com"
         android:hint="Email Address"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,7 +64,6 @@
         style="@style/fieldText"
         android:drawableLeft="@drawable/ic_password"
         android:drawableRight="@drawable/ic_tick"
-        android:text="andika"
         android:hint="Password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -76,7 +74,6 @@
         style="@style/fieldText"
         android:drawableLeft="@drawable/ic_password"
         android:drawableRight="@drawable/ic_tick"
-        android:text="andika"
         android:hint="Confirm Password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -91,29 +88,39 @@
         android:text="Lanjut"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/password2" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/buttonMendaftar">
-        <TextView
-            android:textColor="@color/black"
-            android:alpha="0.7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sudah memiliki akun?"/>
-        <TextView
-            android:id="@+id/linklogin"
-            android:layout_width="wrap_content"
-            android:textColor="@color/black"
-            android:layout_height="wrap_content"
-            android:text="Masuk"
-            android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0.7"
+        android:text="Sudah memiliki akun?"
+        android:textColor="@color/black"
+        tools:layout_editor_absoluteX="117dp"
+        tools:layout_editor_absoluteY="689dp" />
+
+    <TextView
+        android:id="@+id/linklogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Masuk"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="252dp"
+        tools:layout_editor_absoluteY="689dp" />
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -51,15 +51,13 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-
-    <string name="pengajuan1">Pembuatan Surat Pengantar</string>
+    <string name="pengajuan1">Surat Pengantar</string>
     <string name="pengajuan2">Surat Keterangan Tidak Mampu</string>
     <string name="pengajuan3">Surat Pembuatan Kartu Keluarga</string>
     <!-- TODO: Remove or change this placeholder text -->

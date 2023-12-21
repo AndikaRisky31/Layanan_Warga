@@ -8,6 +8,19 @@
     android:background="@color/primary_color"
     android:padding="10dp">
 
+    <TextView
+        android:id="@+id/txt1"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:textSize="20sp"
+        android:layout_marginTop="20dp"
+        style="@style/h2text"
+        android:text="Pilih Daerah Anda : "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
 
     <Spinner
         android:id="@+id/spinnerProvinsi"
@@ -17,7 +30,7 @@
         android:prompt="@string/prompt_provinsi"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt1"
        />
 
     <Spinner

@@ -4,21 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="berita"
-            type="com.celestial.layang.home.BeritaModel" />
+            name="article"
+            type="com.celestial.layang.model.ArticleModel" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="200dp"
-    android:layout_height="wrap_content"
+    android:layout_width="250dp"
+    android:layout_height="370dp"
     android:paddingBottom="20dp"
     android:background="@drawable/bgrounded"
     android:layout_marginRight="20dp">
 
     <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/imageberita"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="150dp"
         android:scaleType="centerCrop"
+        tools:src="@tools:sample/avatars"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -29,13 +30,14 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="7dp"
         android:layout_marginTop="12dp"
         android:drawableStart="@drawable/ic_calmini"
         android:drawablePadding="10dp"
         android:textColor="@color/secondary_color"
         android:fontFamily="@font/opensans_semibold"
-        android:text="@{berita.dateString}"
+        android:text="@{article.date}"
+        tools:text="@tools:sample/date/ddmmyy"
         android:textSize="13sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageberita" />
@@ -46,7 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_medium"
-        android:text="@{berita.title}"
+        android:text="@{article.title}"
         android:layout_marginHorizontal="10dp"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -62,7 +64,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/opensans_regular"
         android:layout_marginHorizontal="10dp"
-        android:text="@{berita.desc}"
+        android:text="Selengkapnya -> "
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

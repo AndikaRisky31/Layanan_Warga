@@ -40,8 +40,32 @@ class UserPreferences(private val preferences: SharedPreferences) {
             preferences.getString(IMAGEURL_KEY,"")?: "",
         )
     }
-
-    // Other methods and constants...
+    fun deleteUserData() {
+        with(preferences.edit()) {
+            remove(USER_ID_KEY)
+            remove(KELURAHAN_ID_KEY)
+            remove(USERNAME_KEY)
+            remove(NOMOR_KEY)
+            remove(PASSWORD_KEY)
+            remove(EMAIL_KEY)
+            remove(ALAMAT_KEY)
+            remove(KOTA_KEY)
+            remove(IMAGEURL_KEY)
+            apply()
+        }
+    }
+    // Inside the UserPreferences class
+    fun isUserDataNotEmpty(userData: UserData): Boolean {
+        return userData.user_id != 0 ||
+                userData.kelurahan_id != 0 ||
+                userData.username!!.isNotEmpty() ||
+                userData.nomor!!.isNotEmpty() ||
+                userData.password!!.isNotEmpty() ||
+                userData.email!!.isNotEmpty() ||
+                userData.alamat!!.isNotEmpty() ||
+                userData.kota!!.isNotEmpty() ||
+                userData.imageURL!!.isNotEmpty()
+    }
 
     companion object {
         private const val USER_ID_KEY = "user_id"

@@ -4,11 +4,12 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 import com.celestial.layang.databinding.PengajuanItemBinding
 import com.celestial.layang.layanan.pengajuan.pengajuanidentity.PengajuanIdentityActivity
 
-class PengajuanAdapter (
+class PengajuanAdapter(
     private val list: List<PengajuanModel>,
     private val context: Context
 ) : RecyclerView.Adapter<PengajuanAdapter.ViewHolder>() {

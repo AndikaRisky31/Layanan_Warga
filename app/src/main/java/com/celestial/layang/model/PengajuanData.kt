@@ -1,16 +1,19 @@
 package com.celestial.layang.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class PengajuanData(
-    val pengajuan_id: Int,
-    val user_id: Int,
-    val nama: String,
-    val nik: Int,
-    val ttl: String,
-    val agama: String,
-    val status: String,
-    val alamat: String,
-    val jenis: String,
-    val imageKTP: String,
-    val imageKK: String
-)
+    var pengajuan_id: Int?,
+    var user_id: Int,
+    var nama: String,
+    var nik: String,
+    var agama: String,
+    var status: String,
+    var alamat: String,
+    var jenis: String,
+    var imageKTP: String,
+    var imageKK: String
+):Parcelable
 

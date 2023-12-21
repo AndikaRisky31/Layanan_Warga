@@ -25,9 +25,10 @@ data class AgendaItem(
     val tempat:String
 )
 data class ArticleModel(
-    val artikel_id:Int,
-    val judul:String,
-    val deskripsi:String,
-    val tanggal:String,
-    val ImageURL:String
+    val article_id:Int,
+    val title:String,
+    var date:String,
+    val author:String,
+    val content:String,
+    val url:String
 )
