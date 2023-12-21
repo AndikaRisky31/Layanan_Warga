@@ -12,7 +12,9 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Base64
+import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.Spinner
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -77,6 +79,15 @@ class LaporActivity : AppCompatActivity() {
         binding.buttonKirim.setOnClickListener {
             saveLaporan()
         }
+        val spinner: Spinner = binding.spinnerJenis
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.jenis_laporan_options,
+            R.layout.spinner
+        ).also { adapter ->
+            adapter.setDropDownViewResource(R.layout.item_spinner)
+            spinner.adapter = adapter
+        }
     }
 
     private fun openGallery() {
@@ -137,7 +148,7 @@ class LaporActivity : AppCompatActivity() {
 
             val userId = userPreferences.getUserData().user_id.toString()
             val lokasi = binding.etLokasi.text.toString()
-            val jenis = binding.etJenis.text.toString()
+            val jenis = binding.spinnerJenis.selectedItem.toString()
             val deskripsi = binding.etDesc.text.toString()
 
             val userIdRequestBody = userId.toRequestBody("text/plain".toMediaTypeOrNull())

@@ -118,7 +118,6 @@
         android:layout_width="360dp"
         style="@style/SpinnerTheme"
         android:layout_height="50dp"
-        android:background="@drawable/card_preset"
         android:padding="4dp"
         android:textColor="@color/black"
         android:layout_marginStart="24dp"

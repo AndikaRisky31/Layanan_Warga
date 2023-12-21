@@ -50,11 +50,11 @@
         app:layout_constraintVertical_bias="0.275" />
 
     <androidx.cardview.widget.CardView
-        android:layout_width="324dp"
-        android:layout_height="615dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="10dp"
         app:cardCornerRadius="14dp"
         app:cardElevation="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view">
@@ -75,16 +75,16 @@
             <TextView
                 android:id="@+id/tv_judul"
                 style="@style/pengajuan_judul"
-                android:textStyle="bold"
                 android:layout_width="324dp"
                 android:layout_height="50dp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/iv_image" />
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="344dp"
+                android:layout_height="wrap_content"
                 android:background="@color/primary_color"
                 app:layout_constraintTop_toBottomOf="@+id/tv_judul">
 

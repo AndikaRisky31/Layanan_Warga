@@ -19,7 +19,7 @@ class BerandaViewModel : ViewModel() {
         withContext(Dispatchers.IO) {
             try {
                 // Panggil ApiService di sini
-                val response = apiService.getLatestArticles(ArticleSize(3)) // Ganti 3 dengan ukuran yang diinginkan
+                val response = apiService.getLatestArticles(ArticleSize(4)) // Ganti 3 dengan ukuran yang diinginkan
 
                 if (response.isSuccessful) {
                     // Ambil data dari response.body() dan isi ke MutableLiveData

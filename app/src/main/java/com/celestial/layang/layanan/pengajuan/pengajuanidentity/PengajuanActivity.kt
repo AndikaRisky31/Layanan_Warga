@@ -41,10 +41,10 @@ class PengajuanIdentityActivity : AppCompatActivity() {
         ArrayAdapter.createFromResource(
             this,
             R.array.status_array, // Define an array resource in your `res/values/arrays.xml` file
-            android.R.layout.simple_spinner_item
+            R.layout.spinner
         ).also { adapter ->
             // Specify the layout to use when the list of choices appears
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            adapter.setDropDownViewResource(R.layout.item_spinner)
             // Apply the adapter to the spinner
             spinnerStatus.adapter = adapter
         }

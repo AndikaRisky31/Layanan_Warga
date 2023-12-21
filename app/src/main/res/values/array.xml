@@ -42,4 +42,10 @@
         <item>Budha</item>
         <item>Khonghucu</item>
     </array>
+    <string-array name="jenis_laporan_options">
+        <item>Infrastruktur dan Lingkungan</item>
+        <item>Keamanan dan Ketertiban</item>
+        <item>Ekonomi</item>
+        <item>Layanan Kesehatan</item>
+    </string-array>
 </resources>

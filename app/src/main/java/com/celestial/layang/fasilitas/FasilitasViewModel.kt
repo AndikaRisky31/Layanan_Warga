@@ -6,21 +6,21 @@ class FasilitasViewModel :ViewModel(){
     fun getFasilitasList(): List<FasilitasModel> {
         return listOf(
             FasilitasModel(
-                "https://pixabay.com/get/gbdd045c7ed6ba217afa0dc4027a3885dfb3abc089860889fb271538d9ed8ed02a481dea302b9827ed99208445400dffa_1280.jpg",
+                "https://api.ayo.co.id/image/venue/168398058571403.image_cropper_1683980470943_large.jpg",
                 "Lapangan Badminton",
                 "Bengkong Sarmen kacau,Blok KK No.1-3"),
             FasilitasModel(
-                "https://picsum.photos/200",
+                "https://terung.magetan.go.id/media/img/berita/berita_6032625e43189f74d3.43494173.jpg",
                 "POSYANDU Lansia Lestari 1",
-                "Bengkong Permai Lanjut Blok Ll No. 10"),
+                "Dk. Wijang Blok Ll No. 10"),
             FasilitasModel(
-                "https://picsum.photos/200",
-                "Fasum Anak Mawar",
-                "Bengkong jatuh Asri,Blok M No. 01-12"),
+                "https://suaranahdliyin.com/wp-content/uploads/2023/09/IMG-20230916-WA0020-696x392.jpg",
+                "Kelurahan Karangtalun",
+                "Jl Ngawen-Kamolan, No. 01"),
             FasilitasModel(
-                "https://picsum.photos/200",
-                "Kelurahan Tanjung batu",
-                "Bengkong tanjung Batu,Blok AA No. 01-03")
+                "https://lh3.googleusercontent.com/p/AF1QipM8sfSjtAcyQfR4ih2ES23UAM8Iob9oEuapV9BP=s0",
+                "Lapangan Desa Wijang",
+                "Dk Wijang"),
         )
     }
 }
