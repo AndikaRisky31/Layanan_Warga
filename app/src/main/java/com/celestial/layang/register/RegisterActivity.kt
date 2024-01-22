@@ -66,11 +66,10 @@ class RegisterActivity : AppCompatActivity() {
                     val checkEmailResponse: CheckEmailResponse? = response.body()
                     checkEmailResponse?.let {
                         // Lakukan sesuatu dengan response
-                        if (!checkEmailResponse.status) {
-                            showError("Email sudah terdaftar")
-                        } else {
-                            // Email belum terdaftar, lanjutkan ke registrasi
+                        if (checkEmailResponse.message == "Email tersedia") {
                             navigateToRegisterActivity2(email, password)
+                        } else if (!checkEmailResponse.status) {
+                            showError("Email sudah terdaftar")
                         }
                     }
                 } else {

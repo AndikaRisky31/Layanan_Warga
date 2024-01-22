@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "832348648887",
+    "project_id": "layanan-warga",
+    "storage_bucket": "layanan-warga.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:832348648887:android:b99ef1a4980b39e5862432",
+        "android_client_info": {
+          "package_name": "com.celestial.layang"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "832348648887-09l56b8v9a3batgi21ekpietnipldg6v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2D5j-HzBlf4zVCbcbT0KWo3ZDmBFI13w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "832348648887-09l56b8v9a3batgi21ekpietnipldg6v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

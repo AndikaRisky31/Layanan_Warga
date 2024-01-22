@@ -8,6 +8,7 @@ import com.celestial.layang.home.MenuActivity
 import com.celestial.layang.model.UserData
 import com.celestial.layang.register.RegisterActivity
 import com.celestial.layang.repository.UserPreferences
+import com.google.firebase.FirebaseApp
 
 class LandingScreenActivity : AppCompatActivity() {
 
@@ -20,6 +21,7 @@ class LandingScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = LandingscreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        FirebaseApp.initializeApp(this);
 
         // Cek apakah ada data pada UserPreferences
         if (userPreferences.isUserDataNotEmpty(userPreferences.getUserData())) {

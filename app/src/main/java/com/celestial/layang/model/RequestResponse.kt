@@ -80,6 +80,10 @@ data class CheckEmailResponse(
     val status : Boolean,
     val message: String
 )
+data class getDataProvinsi(
+    val message: String,
+    val data:List<DataProvinsi>
+)
 
 
 class ApiException(message: String) : Exception(message)

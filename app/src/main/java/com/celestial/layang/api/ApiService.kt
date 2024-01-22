@@ -11,8 +11,6 @@ import com.celestial.layang.model.CheckEmailResponse
 import com.celestial.layang.model.DataKabupaten
 import com.celestial.layang.model.DataKecamatan
 import com.celestial.layang.model.DataKelurahan
-import com.celestial.layang.model.DataProvinsi
-import com.celestial.layang.model.IdRequest
 import com.celestial.layang.model.KelurahanIdRequest
 import com.celestial.layang.model.LaporanResponse
 import com.celestial.layang.model.LoginRequest
@@ -21,6 +19,7 @@ import com.celestial.layang.model.PengajuanResponse
 import com.celestial.layang.model.RegisterResponse
 import com.celestial.layang.model.UpdateResponse
 import com.celestial.layang.model.UserData
+import com.celestial.layang.model.getDataProvinsi
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -40,7 +39,7 @@ interface ApiService {
     @POST("auth/login")
     fun login(@Body body: LoginRequest): Call<LoginResponse>
 
-    @POST("auth/register")
+    @POST("auth/checkemail")
     fun checkEmail(@Body body: CheckEmailRequest):Call<CheckEmailResponse>
 
     @PATCH("users/{id}")
@@ -64,7 +63,7 @@ interface ApiService {
     suspend fun getAdminById(@Path("id") id:String):Response<AdminResponse>
 
     @GET("daerah/provinsi/all")
-    fun getProvinces(): Call<List<DataProvinsi>>
+    fun getProvinces(): Call<getDataProvinsi>
 
     @GET("daerah/kabupaten/{provinceId}")
     fun getRegencies(@Path("provinceId") provinceId: String): Call<List<DataKabupaten>>

@@ -21,6 +21,7 @@ import com.celestial.layang.model.DataKelurahan
 import com.celestial.layang.model.DataProvinsi
 import com.celestial.layang.model.RegisterResponse
 import com.celestial.layang.model.UserData
+import com.celestial.layang.model.getDataProvinsi
 import com.celestial.layang.preLogin.LoginActivity
 import com.celestial.layang.repository.DaerahRepository
 import retrofit2.Call
@@ -70,28 +71,32 @@ class Register2Activity : AppCompatActivity() {
     }
 
     private fun getProvinces() {
-        daerahRepository.getProvinces().enqueue(object : Callback<List<DataProvinsi>> {
-            override fun onResponse(
-                call: Call<List<DataProvinsi>>,
-                response: Response<List<DataProvinsi>>
-            ) {
+        daerahRepository.getProvinces().enqueue(object : Callback<getDataProvinsi> {
+            override fun onResponse(call: Call<getDataProvinsi>, response: Response<getDataProvinsi>) {
                 if (response.isSuccessful) {
-                    provinces = response.body()!!
-                    provinces.let {
+                    val responseData = response.body()
+                    responseData?.let {
+                        provinces = it.data
                         val provinceNames = mutableListOf("Pilih Provinsi")
                         provinceNames.addAll(provinces.map { provinsi -> provinsi.name })
                         setupSpinner(binding.spinnerProvinsi, provinceNames)
+                    } ?: run {
+                        // Handle empty list or null response
                     }
                 } else {
-                    // Handle kegagalan response
+                    // Handle unsuccessful response
+                    val errorBody = response.errorBody()?.string()
+                    Log.e("API Error", "Failed to get provinces: $errorBody")
                 }
             }
 
-            override fun onFailure(call: Call<List<DataProvinsi>>, t: Throwable) {
-                // Handle kegagalan request
+            override fun onFailure(call: Call<getDataProvinsi>, t: Throwable) {
+                Log.e("Network Error", "Failed to get provinces: ${t.message}")
+                // Handle network failure
             }
         })
     }
+
 
     private fun getRegencies(provinceId: String) {
         daerahRepository.getRegencies(provinceId).enqueue(object : Callback<List<DataKabupaten>> {

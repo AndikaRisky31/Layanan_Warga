@@ -6,12 +6,13 @@ import com.celestial.layang.model.DataKabupaten
 import com.celestial.layang.model.DataKecamatan
 import com.celestial.layang.model.DataKelurahan
 import com.celestial.layang.model.DataProvinsi
+import com.celestial.layang.model.getDataProvinsi
 import retrofit2.Call
 
 class DaerahRepository {
     private val apiService: ApiService = ApiClient.apiService
 
-    fun getProvinces(): Call<List<DataProvinsi>> = apiService.getProvinces()
+    fun getProvinces(): Call<getDataProvinsi> = apiService.getProvinces()
 
     fun getRegencies(provinceId: String): Call<List<DataKabupaten>> = apiService.getRegencies(provinceId)
 
